@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 //Import child components
 import { RenderCandidate } from "./CandidateInfo";
 
+//Import functions
+import { fetchCandidateApi } from "../../functions/api";
+
 //Import CSS
 import './LandingPage.css';
 
@@ -16,9 +19,8 @@ export const LandingPage = () => {
     const getRandomUserApi = async () => {
 
       try {
-        const randomUserData = await fetch("https://randomuser.me/api/?results=15");
-        const dataJson = await randomUserData.json();
-        updateCandidateApi(dataJson);
+        const apiResult = await fetchCandidateApi()
+        updateCandidateApi(apiResult);
 
       } catch (err) {
         console.error(err);
