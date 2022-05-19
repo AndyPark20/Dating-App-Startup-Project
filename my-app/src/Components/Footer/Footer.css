@@ -4,6 +4,17 @@
 width:100%;
 }
 
+.footer-row{
+  display:flex;
+}
+
+.next-prev-view{
+  width:50%;
+  display:flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}
+
 
 .page-per-view{
   display:flex;

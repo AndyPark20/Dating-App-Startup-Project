@@ -9,7 +9,7 @@ import './Footer.css';
 export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber }) => {
   return (
     <div className="footer-container">
-      <div className="row">
+      <div className="footer-row">
         <div className="col page-per-view">
           <p>Display</p>
           <select onChange={(e) => updateDisplaycount(e.target.value)}>
