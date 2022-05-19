@@ -12,25 +12,21 @@ import './LandingPage.css';
 
 
 
-export const LandingPage = () => {
+export const LandingPage = ({ pageNumber, displayCount }) => {
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
-  //store page number for pagination feature
-  const [pageNumber,updatePageNumber] = useState(1)
 
   useEffect(() => {
-
     const getRandomUserApi = async () => {
       try {
-        const apiResult = await fetchCandidateApi(pageNumber)
+        const apiResult = await fetchCandidateApi(displayCount);
         updateCandidateApi(apiResult);
-
       } catch (err) {
         console.error(err);
       }
     };
     getRandomUserApi();
-  },[]);
+  }, [displayCount]);
 
   return (
     <div className="candidate-master-container">

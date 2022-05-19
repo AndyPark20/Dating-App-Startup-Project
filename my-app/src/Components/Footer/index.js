@@ -5,13 +5,14 @@ import React from 'react';
 import './Footer.css';
 
 
-export const Footer =()=>{
+
+export const Footer = ({ updateDisplaycount }) => {
   return (
     <div className="footer-container">
       <div className="row">
         <div className="col page-per-view">
           <p>Display</p>
-          <select>
+          <select onChange={(e) => updateDisplaycount(e.target.value)}>
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="30">30</option>
@@ -21,4 +22,4 @@ export const Footer =()=>{
       </div>
     </div>
   );
-}
+};
