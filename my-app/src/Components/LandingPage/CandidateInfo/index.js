@@ -28,5 +28,5 @@ export const RenderCandidate = ({ candidateApiData }) => {
     }
   };
 
-  return <div>{renderCandidates()}</div>;
+  return <div className="candidate-row-section">{renderCandidates()}</div>;
 };

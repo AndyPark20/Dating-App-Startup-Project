@@ -2,6 +2,7 @@
 
 .candidate-row-section{
   width:100%;
+  position:absolute;
 }
 
 .candidate-info{
