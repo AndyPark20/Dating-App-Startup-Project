@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 //Import child components
 import { RenderCandidate } from "./CandidateInfo";
 
+//Import CSS
+import './LandingPage.css';
 
 
 
 export const LandingPage = () => {
   //Store object retrieved from Api fetch in order to pass down as props to child components
-  const [userApi, updateUserApi] = useState({});
+  const [candidateApi, updateCandidateApi] = useState({});
 
   useEffect(() => {
     const getRandomUserApi = async () => {
@@ -16,7 +18,7 @@ export const LandingPage = () => {
       try {
         const randomUserData = await fetch("https://randomuser.me/api/?results=15");
         const dataJson = await randomUserData.json();
-        updateUserApi(dataJson);
+        updateCandidateApi(dataJson);
 
       } catch (err) {
         console.error(err);
@@ -26,8 +28,8 @@ export const LandingPage = () => {
   },[]);
 
   return (
-    <div>
-      <RenderCandidate userApiData={userApi} />
+    <div className="candidate-master-container">
+      <RenderCandidate candidateApiData={candidateApi} />
     </div>
   );
 };

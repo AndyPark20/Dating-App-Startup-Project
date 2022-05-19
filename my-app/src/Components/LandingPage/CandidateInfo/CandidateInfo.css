@@ -1,0 +1,18 @@
+
+
+.candidate-row-section{
+  width:100%;
+}
+
+.candidate-info{
+  display:flex;
+}
+
+.candidate-name{
+  display:flex;
+  width:100%;
+}
+
+.last{
+  padding-left:.5%;
+}
