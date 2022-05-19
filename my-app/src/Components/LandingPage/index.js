@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 //Import child components
 import { RenderCandidate } from "./CandidateInfo";
 
+
 //Import functions
 import { fetchCandidateApi } from "../../functions/api";
 

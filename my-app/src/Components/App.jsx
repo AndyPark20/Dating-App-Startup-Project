@@ -17,11 +17,12 @@ export const App =()=>{
           <div className="vertical-menu">
             <VerticalMenu />
           </div>
-          <LandingPage />
+          <div className="main-section-footer-style">
+            <LandingPage />
+            <Footer />
+          </div>
         </div>
-        <div className="footer-section">
-          <Footer />
-        </div>
+        <div className="footer-section"></div>
       </div>
     </div>
   );
