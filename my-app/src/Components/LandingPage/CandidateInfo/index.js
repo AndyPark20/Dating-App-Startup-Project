@@ -7,6 +7,15 @@ import './CandidateInfo.css';
 
 
 export const RenderCandidate = ({ candidateApiData }) => {
+
+  //Function to fetch Api to its this for that business idea
+  const fetchBizIdea= async()=>{
+      const bizIdeaData = await fetch("http://itsthisforthat.com/api.php?call=myfunc");
+      const bizIdeaDataResult = await bizIdeaData.json();
+      console.log('biz idea', bizIdeaDataResult);
+  }
+
+
   //use Map function to loop thru the userApi object
   const renderCandidates = () => {
 
@@ -19,6 +28,7 @@ export const RenderCandidate = ({ candidateApiData }) => {
                 <div className="candidate-name">
                   <p className="first">{values.name.first}</p>
                   <p className="last">{values.name.last}</p>
+                  <p className="biz-idea">{fetchBizIdea()}</p>
                   </div>
               </div>
           );
