@@ -13,20 +13,22 @@ import './LandingPage.css';
 
 
 export const LandingPage = ({ pageNumber, displayCount }) => {
+
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
 
+  //Call back function to fetch api with pageNumber and displaycount Value
   useEffect(() => {
     const getRandomUserApi = async () => {
       try {
-        const apiResult = await fetchCandidateApi(displayCount);
+        const apiResult = await fetchCandidateApi(pageNumber,displayCount);
         updateCandidateApi(apiResult);
       } catch (err) {
         console.error(err);
       }
     };
     getRandomUserApi();
-  }, [displayCount]);
+  }, [displayCount,pageNumber]);
 
   return (
     <div className="candidate-master-container">

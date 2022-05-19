@@ -6,7 +6,7 @@ import './Footer.css';
 
 
 
-export const Footer = ({ updateDisplaycount }) => {
+export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber }) => {
   return (
     <div className="footer-container">
       <div className="row">
@@ -18,6 +18,10 @@ export const Footer = ({ updateDisplaycount }) => {
             <option value="30">30</option>
           </select>
           <p>Candidates per page</p>
+        </div>
+        <div className="col next-prev-view">
+          <p onClick={() => updatePageNumber(pageNumber+1)}>next</p>
+          <p onClick={() => updatePageNumber(pageNumber-1)}>prev</p>
         </div>
       </div>
     </div>

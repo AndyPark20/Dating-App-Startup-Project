@@ -24,7 +24,7 @@ export const App =()=>{
           </div>
           <div className="main-section-footer-style">
             <LandingPage pageNumber={pageNumber} displayCount={displayCount} />
-            <Footer updateDisplaycount={updateDisplaycount} />
+            <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber}/>
           </div>
         </div>
         <div className="footer-section"></div>
