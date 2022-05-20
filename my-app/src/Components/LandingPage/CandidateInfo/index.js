@@ -28,11 +28,12 @@ export const RenderCandidate = ({ candidateApiData }) => {
 
   //Function to render random biz ideas from bizIdeaList state
   const renderBizIdea = (index)=>{
-    if(bizIdeaList){
+    if(bizIdeaList.length >0){
+      // console.log(bizIdeaList[index].this);
       return (
         <div>
-          {/* <p>{bizIdeaList[index].this}</p> */}
-          {/* <p>{bizIdeaList[index].that}</p> */}
+          <p>{bizIdeaList[index].this}</p>
+          <p>{bizIdeaList[index].that}</p>
         </div>
       );
     };
