@@ -8,20 +8,27 @@ export const RenderCandidate = ({ candidateApiData }) => {
   const [bizIdeaList, updateBizIdeaList] = useState([]);
 
 
-
+useEffect(() => {
   //call FetchBizIdea function at the first render to store data object within useState
-  const test = async()=>{
-      if (candidateApiData.results) {
-        const bizIdeaData = await Promise.all(
-          candidateApiData.results.map(async (values, index) => {
-            return await fetchBizIdea();
-          })
-        );
-        console.log("promise", bizIdeaData);
-      }
-  }
+  const fetchBizData = async () => {
+    if (candidateApiData.results) {
+      const bizIdeaData = await Promise.all(
+        candidateApiData.results.map(async (values, index) => {
+          return await fetchBizIdea();
+        })
+      );
+      updateBizIdeaList({ ...bizIdeaData });
+      console.log(bizIdeaData)
+    }
+  };
+  fetchBizData();
 
-  test();
+},[candidateApiData]);
+
+
+
+
+
 
 
   //use Map function to loop thru the userApi object
