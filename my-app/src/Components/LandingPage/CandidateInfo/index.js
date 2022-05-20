@@ -32,8 +32,8 @@ export const RenderCandidate = ({ candidateApiData }) => {
       // console.log(bizIdeaList[index].this);
       return (
         <div>
-          <p>{bizIdeaList[index].this}</p>
-          <p>{bizIdeaList[index].that}</p>
+          <span>{bizIdeaList[index].this}</span>
+          <span>{bizIdeaList[index].that}</span>
         </div>
       );
     };
@@ -55,9 +55,9 @@ export const RenderCandidate = ({ candidateApiData }) => {
               <div className="candidate-name">
                 <p className="first">{values.name.first}</p>
                 <p className="last">{values.name.last}</p>
-                <p className="biz-idea">
+                <span className="biz-idea">
                   {renderBizIdea(index)}
-                </p>
+                </span>
               </div>
             </div>
           );

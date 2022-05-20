@@ -21,7 +21,6 @@ export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber }) => {
         </div>
         <div className="col next-prev-view">
           <p onClick={() => updatePageNumber(pageNumber+1)}>next</p>
-          <p onClick={() => updatePageNumber(pageNumber-1)}>prev</p>
         </div>
       </div>
     </div>
