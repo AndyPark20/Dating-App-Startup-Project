@@ -1,10 +1,25 @@
-import React from "react";
-import { fetchCandidateApi } from "../../../functions/api";
+import React, {useEffect,useState} from "react";
+import { fetchBizIdea} from "../../../functions/api";
 
 //Import CSS
 import "./CandidateInfo.css";
 
 export const RenderCandidate = ({ candidateApiData }) => {
+
+  useEffect(() => {
+    if (candidateApiData.results) {
+      candidateApiData.results.forEach(async (values, index) => {
+        console.log(fetchBizIdea())
+        // return fetchBizIdea();
+      });
+
+    }
+  })
+
+
+
+
+
 
 
 

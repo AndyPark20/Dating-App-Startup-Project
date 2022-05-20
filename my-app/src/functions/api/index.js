@@ -11,7 +11,8 @@ export const fetchCandidateApi = async(perPageView,perPageCount)=>{
 
 //Function to fetch random business idea api
 export const fetchBizIdea = async ()=>{
-    const bizIdeaData = await fetch('/api/bizIdea');
+    const bizIdeaData = await fetch("http://localhost:4000/api/bizIdea");
     const bizDataResult = await bizIdeaData.json();
-    return bizDataResult;
+    console.log(bizDataResult.this)
+    return "hello";
 }
