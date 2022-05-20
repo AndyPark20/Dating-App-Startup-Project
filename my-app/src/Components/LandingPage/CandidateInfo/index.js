@@ -7,8 +7,8 @@ import "./CandidateInfo.css";
 export const RenderCandidate = ({ candidateApiData }) => {
   const [bizIdeaList, updateBizIdeaList] = useState([]);
 
+  //call FetchBizIdea function at the first render to store data object within useState
   useEffect(() => {
-    //call FetchBizIdea function at the first render to store data object within useState
     const fetchBizData = async () => {
       try {
         if (candidateApiData.results) {
@@ -17,7 +17,7 @@ export const RenderCandidate = ({ candidateApiData }) => {
               return fetchBizIdea();
             })
           );
-          updateBizIdeaList({ ...bizIdeaData });
+          updateBizIdeaList([...bizIdeaData]);
         }
       } catch (err) {
         console.error(err);
@@ -25,6 +25,19 @@ export const RenderCandidate = ({ candidateApiData }) => {
     };
     fetchBizData();
   }, [candidateApiData]);
+
+  //Function to render random biz ideas from bizIdeaList state
+  const renderBizIdea = (index)=>{
+    if(bizIdeaList){
+      return (
+        <div>
+          {/* <p>{bizIdeaList[index].this}</p> */}
+          {/* <p>{bizIdeaList[index].that}</p> */}
+        </div>
+      );
+    };
+
+  };
 
   //use Map function to loop thru the userApi object
   const renderCandidates = () => {
@@ -41,7 +54,9 @@ export const RenderCandidate = ({ candidateApiData }) => {
               <div className="candidate-name">
                 <p className="first">{values.name.first}</p>
                 <p className="last">{values.name.last}</p>
-                <p className="biz-idea">{console.log('biz idea list',bizIdeaList)}</p>
+                <p className="biz-idea">
+                  {renderBizIdea(index)}
+                </p>
               </div>
             </div>
           );
