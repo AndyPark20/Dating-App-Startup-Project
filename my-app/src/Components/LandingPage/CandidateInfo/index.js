@@ -7,29 +7,24 @@ import "./CandidateInfo.css";
 export const RenderCandidate = ({ candidateApiData }) => {
   const [bizIdeaList, updateBizIdeaList] = useState([]);
 
-
-useEffect(() => {
-  //call FetchBizIdea function at the first render to store data object within useState
-  const fetchBizData = async () => {
-    if (candidateApiData.results) {
-      const bizIdeaData = await Promise.all(
-        candidateApiData.results.map(async (values, index) => {
-          return await fetchBizIdea();
-        })
-      );
-      updateBizIdeaList({ ...bizIdeaData });
-      console.log(bizIdeaData)
-    }
-  };
-  fetchBizData();
-
-},[candidateApiData]);
-
-
-
-
-
-
+  useEffect(() => {
+    //call FetchBizIdea function at the first render to store data object within useState
+    const fetchBizData = async () => {
+      try {
+        if (candidateApiData.results) {
+          const bizIdeaData = await Promise.all(
+            candidateApiData.results.map(async (values, index) => {
+              return fetchBizIdea();
+            })
+          );
+          updateBizIdeaList({ ...bizIdeaData });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchBizData();
+  }, [candidateApiData]);
 
   //use Map function to loop thru the userApi object
   const renderCandidates = () => {
@@ -46,7 +41,7 @@ useEffect(() => {
               <div className="candidate-name">
                 <p className="first">{values.name.first}</p>
                 <p className="last">{values.name.last}</p>
-                <p className="biz-idea"></p>
+                <p className="biz-idea">{console.log('biz idea list',bizIdeaList)}</p>
               </div>
             </div>
           );
