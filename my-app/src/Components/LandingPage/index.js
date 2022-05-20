@@ -18,15 +18,17 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
   useEffect(() => {
     const getRandomUserApi = async () => {
       try {
-        const apiResult = await fetchCandidateApi(pageNumber, displayCount);
-        if (apiResult) {
+        const candidateApiResult = await fetchCandidateApi(pageNumber, displayCount);
+        if (candidateApiResult) {
           const bizIdeaData = await Promise.all(
-            apiResult.results.map(async (values, index) => {
+            candidateApiResult.results.map(async (values, index) => {
               return fetchBizIdea();
             })
           );
           updateRandomBizApi([...bizIdeaData]);
-          updateCandidateApi(apiResult);
+          //Make a deep copy of the api result object before updating the state
+          let deepCopyApiResult = JSON.parse(JSON.stringify(candidateApiResult ));
+          updateCandidateApi(deepCopyApiResult);
         }
       } catch (err) {
         console.error(err);
