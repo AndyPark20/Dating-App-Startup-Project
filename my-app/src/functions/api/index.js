@@ -13,6 +13,5 @@ export const fetchCandidateApi = async(perPageView,perPageCount)=>{
 export const fetchBizIdea = async ()=>{
     const bizIdeaData = await fetch("http://localhost:4000/api/bizIdea");
     const bizDataResult = await bizIdeaData.json();
-    console.log(bizDataResult.this)
-    return "hello";
+    return bizDataResult;
 }
