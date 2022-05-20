@@ -28,13 +28,11 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi }) => {
   // }, [candidateApiData]);
 
 
-  //Function to render random biz ideas from bizIdeaList state
+  //Function to render random biz ideas from randomBizApi that is passed as props from parent component
   const renderBizIdea = (index)=>{
     if (randomBizApi.length > 0 && randomBizApi.length === candidateApiData.results.length) {
       return (
         <div>
-          {console.log('randomBIz',randomBizApi.length)}
-          {console.log('candidate',candidateApiData.results.length)}
           <span>{randomBizApi[index].this}</span>
           <span>{randomBizApi[index].that}</span>
         </div>
