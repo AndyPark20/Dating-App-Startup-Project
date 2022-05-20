@@ -4,36 +4,39 @@ import { fetchBizIdea } from "../../../functions/api";
 //Import CSS
 import "./CandidateInfo.css";
 
-export const RenderCandidate = ({ candidateApiData }) => {
+export const RenderCandidate = ({ candidateApiData, randomBizApi }) => {
   const [bizIdeaList, updateBizIdeaList] = useState([]);
 
-  //call FetchBizIdea function at the first render to store data object within useState
-  useEffect(() => {
-    const fetchBizData = async () => {
-      try {
-        if (candidateApiData.results) {
-          const bizIdeaData = await Promise.all(
-            candidateApiData.results.map(async (values, index) => {
-              return fetchBizIdea();
-            })
-          );
-          updateBizIdeaList([...bizIdeaData]);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchBizData();
-  }, [candidateApiData]);
+  // //call FetchBizIdea function at the first render to store data object within useState
+  // useEffect(() => {
+  //   const fetchBizData = async () => {
+  //     try {
+  //       if (candidateApiData.results) {
+  //         const bizIdeaData = await Promise.all(
+  //           candidateApiData.results.map(async (values, index) => {
+  //             return fetchBizIdea();
+  //           })
+  //         );
+
+  //         updateBizIdeaList([...bizIdeaData]);
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   fetchBizData();
+  // }, [candidateApiData]);
+
 
   //Function to render random biz ideas from bizIdeaList state
   const renderBizIdea = (index)=>{
-    if(bizIdeaList.length >0){
-      // console.log(bizIdeaList[index].this);
+    if (randomBizApi.length > 0 && randomBizApi.length === candidateApiData.results.length) {
       return (
         <div>
-          <span>{bizIdeaList[index].this}</span>
-          <span>{bizIdeaList[index].that}</span>
+          {console.log('randomBIz',randomBizApi.length)}
+          {console.log('candidate',candidateApiData.results.length)}
+          <span>{randomBizApi[index].this}</span>
+          <span>{randomBizApi[index].that}</span>
         </div>
       );
     };
