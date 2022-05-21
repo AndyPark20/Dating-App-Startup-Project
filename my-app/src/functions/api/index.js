@@ -21,3 +21,9 @@ export const createRandomNumber = ()=>{
     const randomNumber = Math.floor(Math.random()*100);
     return randomNumber;
 }
+
+//Generate random number for completion (in Months)
+exporet const createRandomMonth =()=>{
+    const randomMonth = Math.floor(Math.random()*12);
+    return randomMonth;
+}
