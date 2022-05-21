@@ -7,9 +7,25 @@ import "./CandidateInfo.css";
 //Import function
 import { createRandomMonth } from "../../../functions/api/"
 
-export const RenderCandidate = ({ candidateApiData, randomBizApi }) => {
+export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration }) => {
 
   const [bizIdeaList, updateBizIdeaList] = useState([]);
+  const [combinedObject, updateCombinedObject] = useState([]);
+
+  useEffect(()=>{
+    //combine all fetched data, random month, and random cost into single object
+    if(candidateApiData.results){
+      candidateApiData.results.forEach((values, index) => {
+        return(
+          values['durationMonth'] = projectDuration[index],
+          values['bizModel'] = randomBizApi[index]
+        )
+
+      })
+      console.log('deep', candidateApiData)
+    }
+
+  })
 
   //Function to render random biz ideas from randomBizApi that is passed as props from parent component
   const renderBizIdea = (index)=>{
