@@ -10,7 +10,7 @@ app.use(jsonMiddleWare());
 
 
 //Server to by pass CORS issue with itsthisforthat API to retrieve business idea data.
-app.get("http://localhost:4000/api/bizIdea", async (req, res, next) => {
+app.get("/api/bizIdea", async (req, res, next) => {
   try {
     const data = await fetch("http://itsthisforthat.com/api.php?json");
     const dataResult = await data.json();
