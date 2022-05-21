@@ -21,14 +21,18 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
     const getRandomUserApi = async () => {
       try {
         //Clear project duration array everytime api is fetched.
+        updateCandidateApi({});
         updateProjectDuration([]);
         const candidateApiResult = await fetchCandidateApi(pageNumber, displayCount);
         if (candidateApiResult) {
           //fetch Random Biz Idea API
           const bizIdeaData = await Promise.all(
             candidateApiResult.results.map(async (values, index) => {
+
               //create random month for the length of candidate Array
-              updateProjectDuration(projectDuration=>[...projectDuration,createRandomMonth()]);
+              updateProjectDuration(projectDuration => [...projectDuration, createRandomMonth()]);
+
+              //return data from random biz idea api
               return fetchBizIdea();
             })
           );

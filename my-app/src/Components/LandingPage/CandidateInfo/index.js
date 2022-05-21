@@ -22,18 +22,21 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
         )
 
       })
-      console.log('deep', candidateApiData)
+     updateCombinedObject(candidateApiData);
     }
 
   })
 
   //Function to render random biz ideas from randomBizApi that is passed as props from parent component
   const renderBizIdea = (index)=>{
-    if (randomBizApi.length > 0 && randomBizApi.length === candidateApiData.results.length) {
+    console.log('comvinedOBject',combinedObject.results[index])
+    if (Object.keys(combinedObject).length !==0) {
+      console.log('object',combinedObject)
       return (
         <div>
-          <span>{randomBizApi[index].this}</span>
-          <span>{randomBizApi[index].that}</span>
+          <span>{combinedObject.results[index].bizModel.this}</span>
+          <span>{combinedObject.results[index].bizModel.that}</span>
+          <span>{combinedObject.results[index].durationMonth}</span>
         </div>
       );
     };
@@ -43,8 +46,8 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
   //use Map function to loop thru the userApi object
   const renderCandidates = () => {
     //First render will be an empty array. Run when data has been retrieved
-    if (candidateApiData.results) {
-      const invdividualCandidates = candidateApiData.results.map(
+    if (combinedObject.results) {
+      const invdividualCandidates = combinedObject.results.map(
         (values, index) => {
           return (
             <div className="candidate-info">
