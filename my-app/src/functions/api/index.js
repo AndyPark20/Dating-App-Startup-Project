@@ -15,3 +15,9 @@ export const fetchBizIdea = async ()=>{
     const bizDataResult = await bizIdeaData.json();
     return bizDataResult;
 }
+
+//Create a random number for random page views
+export const createRandomNumber = ()=>{
+    const randomNumber = Math.floor(Math.random()*100);
+    return randomNumber;
+}

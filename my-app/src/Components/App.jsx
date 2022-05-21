@@ -8,9 +8,12 @@ import { LandingPage } from './LandingPage/';
 import { VerticalMenu } from './VerticalMenu';
 import { Footer } from './Footer';
 
+//Import function
+import { createRandomNumber } from '../functions/api/index';
+
 export const App =()=>{
   //store page number for pagination feature
-  const [pageNumber, updatePageNumber] = useState(1);
+  const [pageNumber, updatePageNumber] = useState(createRandomNumber());
 
   //Store display candidates per page number
   const [displayCount, updateDisplaycount] = useState(10)
