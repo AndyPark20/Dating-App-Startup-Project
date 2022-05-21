@@ -23,7 +23,8 @@ export const createRandomNumber = ()=>{
 }
 
 //Generate random number for completion (in Months)
-exporet const createRandomMonth =()=>{
+export const createRandomMonth =()=>{
     const randomMonth = Math.floor(Math.random()*12);
+    console.log(randomMonth)
     return randomMonth;
 }

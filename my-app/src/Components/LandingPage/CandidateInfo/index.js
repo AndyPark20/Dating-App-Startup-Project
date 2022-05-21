@@ -4,29 +4,12 @@ import { fetchBizIdea } from "../../../functions/api";
 //Import CSS
 import "./CandidateInfo.css";
 
+//Import function
+import { createRandomMonth } from "../../../functions/api/"
+
 export const RenderCandidate = ({ candidateApiData, randomBizApi }) => {
+
   const [bizIdeaList, updateBizIdeaList] = useState([]);
-
-  // //call FetchBizIdea function at the first render to store data object within useState
-  // useEffect(() => {
-  //   const fetchBizData = async () => {
-  //     try {
-  //       if (candidateApiData.results) {
-  //         const bizIdeaData = await Promise.all(
-  //           candidateApiData.results.map(async (values, index) => {
-  //             return fetchBizIdea();
-  //           })
-  //         );
-
-  //         updateBizIdeaList([...bizIdeaData]);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-  //   fetchBizData();
-  // }, [candidateApiData]);
-
 
   //Function to render random biz ideas from randomBizApi that is passed as props from parent component
   const renderBizIdea = (index)=>{
@@ -59,6 +42,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi }) => {
                 <span className="biz-idea">
                   {renderBizIdea(index)}
                 </span>
+          <span className="project-month"></span>
               </div>
             </div>
           );
