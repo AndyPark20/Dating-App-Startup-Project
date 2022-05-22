@@ -9,8 +9,11 @@ export const InfoHeader = ()=>{
           <tr>
             <th></th>
             <th>Full Name:</th>
+            <th>Phone:</th>
+            <th>Email:</th>
             <th>Business Idea:</th>
             <th>Project Completion ETA:</th>
+            <th>Cost</th>
           </tr>
     </thead>
   )

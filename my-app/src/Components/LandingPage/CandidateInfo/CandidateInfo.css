@@ -18,3 +18,7 @@ td{
 table, th, td {
   border: 1px solid black;
 }
+
+.currency{
+  font-size:.6rem;
+}

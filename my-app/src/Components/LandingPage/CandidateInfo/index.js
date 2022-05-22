@@ -11,7 +11,7 @@ import "./CandidateInfo.css";
 //Import function
 import { createRandomMonth } from "../../../functions/api/"
 
-export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration }) => {
+export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration, randomCost }) => {
 
   const [bizIdeaList, updateBizIdeaList] = useState([]);
   const [combinedObject, updateCombinedObject] = useState([]);
@@ -24,10 +24,12 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
       candidateApiData.results.forEach((values, index) => {
         return (
           values['durationMonth'] = projectDuration[index],
-          values['bizModel'] = randomBizApi[index]
+          values['bizModel'] = randomBizApi[index],
+          values['randomCost'] = randomCost[index]
         );
       });
       updateCombinedObject(candidateApiData);
+      console.log(combinedObject)
     };
   });
 
@@ -36,8 +38,9 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     if (Object.keys(combinedObject).length !== 0) {
       return (
         <React.Fragment>
-          <td>{combinedObject.results[index].bizModel.that} {combinedObject.results[index].bizModel.this}</td>
-          <td>{combinedObject.results[index].durationMonth}</td>
+          <td>{`It's like a ${combinedObject.results[index].bizModel.that} for ${combinedObject.results[index].bizModel.this}`}</td>
+          <td>{combinedObject.results[index].durationMonth} mos.</td>
+          <td>${combinedObject.results[index].randomCost}million <span className="currency">USD</span></td>
         </React.Fragment>
 
       );
@@ -58,7 +61,9 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
                 </td>
-                <td>{values.name.first} {values.name.last}</td>
+                <td>{`${values.name.first} ${values.name.last}`}</td>
+                <td>{values.phone}</td>
+                <td>{values.email}</td>
                 <React.Fragment>
                   {renderBizIdea(index)}
                 </React.Fragment>
@@ -67,16 +72,16 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
           );
         }
       );
-return invdividualCandidates;
+      return invdividualCandidates;
     };
   };
 
-return (
-  <React.Fragment>
-    <table className="table-styling">
-      <InfoHeader />
-      {renderCandidates()}
-    </table>
-  </React.Fragment>
-);
+  return (
+    <React.Fragment>
+      <table className="table-styling">
+        <InfoHeader />
+        {renderCandidates()}
+      </table>
+    </React.Fragment>
+  );
 };

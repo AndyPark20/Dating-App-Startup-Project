@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { RenderCandidate } from "./CandidateInfo";
 
 //Import functions
-import { fetchCandidateApi, fetchBizIdea, createRandomMonth } from "../../functions/api";
+import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber} from "../../functions/api";
 
 //Import CSS
 import "./LandingPage.css";
@@ -15,24 +15,29 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
   const [candidateApi, updateCandidateApi] = useState({});
   const [randomBizApi, updateRandomBizApi] = useState([]);
   const [projectDuration, updateProjectDuration] = useState([]);
+  const [randomCost, updateRandomCost] = useState([]);
 
-  //Call back function to fetch api with pageNumber and displaycount Value
   useEffect(() => {
     const getRandomUserApi = async () => {
       try {
         //Clear project duration array everytime api is fetched.
         updateCandidateApi({});
         updateProjectDuration([]);
+
+        //Call back function to fetch api with pageNumber and displaycount Value
         const candidateApiResult = await fetchCandidateApi(pageNumber, displayCount);
         if (candidateApiResult) {
           //fetch Random Biz Idea API
           const bizIdeaData = await Promise.all(
             candidateApiResult.results.map(async (values, index) => {
 
-              //create random month for the length of candidate Array
+              //Create random month based on the length of populated candidate Array
               updateProjectDuration(projectDuration => [...projectDuration, createRandomMonth()]);
 
-              //return data from random biz idea api
+              //Create random cost based on the length of populated candidate array
+              updateRandomCost(randomCost => [...randomCost, createRandomNumber()]);
+
+              //Return data from random biz idea api
               return fetchBizIdea();
             })
           );
@@ -53,8 +58,9 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
     <div className="candidate-master-container">
       <RenderCandidate
         candidateApiData={candidateApi}
-        randomBizApi={randomBizApi}
         projectDuration={projectDuration}
+        randomBizApi={randomBizApi}
+        randomCost={randomCost}
       />
     </div>
   );
