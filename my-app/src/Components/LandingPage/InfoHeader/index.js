@@ -5,12 +5,13 @@ import './InfoHeader.css';
 
 export const InfoHeader = ()=>{
   return(
-    <div className="header-info">
+    <thead>
           <tr>
+            <th></th>
             <th>Full Name:</th>
             <th>Business Idea:</th>
             <th>Project Completion ETA:</th>
           </tr>
-    </div>
+    </thead>
   )
 }

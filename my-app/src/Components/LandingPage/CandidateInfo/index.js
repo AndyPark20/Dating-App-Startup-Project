@@ -35,13 +35,12 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   const renderBizIdea = (index) => {
     if (Object.keys(combinedObject).length !== 0) {
       return (
-        <div className="biz-model-container">
-          <tr className="biz-tr-table">
-            <td>{combinedObject.results[index].bizModel.this}</td>
-            <td>{combinedObject.results[index].bizModel.that}</td>
-            <td>{combinedObject.results[index].durationMonth}</td>
-          </tr>
-        </div>
+        <React.Fragment>
+          <td>{combinedObject.results[index].bizModel.this}</td>
+          <td>{combinedObject.results[index].bizModel.that}</td>
+          <td>{combinedObject.results[index].durationMonth}</td>
+        </React.Fragment>
+
       );
     };
 
@@ -54,29 +53,31 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
       const invdividualCandidates = combinedObject.results.map(
         (values, index) => {
           return (
-            <div className="candidate-info">
+            // <span className="candidate-info">
+            <tbody>
               <tr className="name-tr-table">
                 <td>
-                <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`}/>
+                  <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
                 </td>
                 <td>{values.name.first} {values.name.last}</td>
-                <td>
+                <React.Fragment>
                   {renderBizIdea(index)}
-                </td>
+                </React.Fragment>
               </tr>
-
-            </div>
+            </tbody >
           );
         }
       );
-      return invdividualCandidates;
+return invdividualCandidates;
     };
   };
 
-  return (
-    <div className="candidate-row-section">
+return (
+  <React.Fragment>
+    <table className="table-styling">
       <InfoHeader />
       {renderCandidates()}
-    </div>
-  );
+    </table>
+  </React.Fragment>
+);
 };
