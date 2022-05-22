@@ -37,13 +37,16 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   //Function to collect index value of liked Candidates
   const getLikedCandidate=(e)=>{
     const selectedIndex = e.target.id;
-    if(combinedObject.results){
-      updateLikedList(likedList=>[...likedList,])
-      console.log(combinedObject.results[e.target.id])
-      updateLikedCandidateList
+    const CheckUnCheckValue = e.target.checked
+    if(CheckUnCheckValue){
+      updateLikedList([...likedList, combinedObject.results[selectedIndex]])
+    }else{
+      // likedList[selectedIndex]
+      // likedList.splice(selectedIndex)
+      // const removedArray = likedList.filter((likedList,index) => index !== selectedIndex)
+      // updateLikedList(likedList.splice(selectedIndex));
     }
-    console.log(e.target.id)
-    console.log(e.target.checked)
+
   }
 
 
@@ -60,6 +63,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     if (Object.keys(combinedObject).length !== 0) {
       return (
         <React.Fragment>
+          <td>{console.log(likedList)}</td>
           <td>{`It's like a ${combinedObject.results[index].bizModel.that} for ${combinedObject.results[index].bizModel.this}`}</td>
           <td>{combinedObject.results[index].durationMonth} <span className={hideMonth(index)}>mos.</span></td>
           <td>${combinedObject.results[index].randomCost}million <span className="currency">USD</span></td>
