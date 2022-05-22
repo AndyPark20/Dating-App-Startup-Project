@@ -1,9 +1,5 @@
 
 
-.candidate-row-section{
-  width:100%;
-  position:absolute;
-}
 
 .candidate-picture{
   width: 100px;
@@ -11,17 +7,14 @@
   border-radius: 50%;
 }
 
-.candidate-info{
-  display:flex;
-}
-
-.candidate-name{
-  display:flex;
-  align-items: center;
+.table-styling{
   width:100%;
-  justify-content: space-around;
 }
 
-.last{
-  padding-left:.5%;
+td{
+  text-align:center;
+}
+
+table, th, td {
+  border: 1px solid black;
 }

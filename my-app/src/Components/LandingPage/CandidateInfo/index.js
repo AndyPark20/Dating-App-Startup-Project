@@ -36,8 +36,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     if (Object.keys(combinedObject).length !== 0) {
       return (
         <React.Fragment>
-          <td>{combinedObject.results[index].bizModel.this}</td>
-          <td>{combinedObject.results[index].bizModel.that}</td>
+          <td>{combinedObject.results[index].bizModel.that} {combinedObject.results[index].bizModel.this}</td>
           <td>{combinedObject.results[index].durationMonth}</td>
         </React.Fragment>
 
