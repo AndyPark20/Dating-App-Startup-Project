@@ -15,6 +15,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
 
   const [bizIdeaList, updateBizIdeaList] = useState([]);
   const [combinedObject, updateCombinedObject] = useState([]);
+  const [likedList, updateLikedList]=useState([]);
 
   useEffect(() => {
     /*combine all fetched data, random month, and random cost into single object so that it can be
@@ -33,9 +34,21 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     };
   });
 
+  //Function to collect index value of liked Candidates
+  const getLikedCandidate=(e)=>{
+    const selectedIndex = e.target.id;
+    if(combinedObject.results){
+      updateLikedList(likedList=>[...likedList,])
+      console.log(combinedObject.results[e.target.id])
+      updateLikedCandidateList
+    }
+    console.log(e.target.id)
+    console.log(e.target.checked)
+  }
+
+
   //Function to hide mos. if month is "completed" (zero)
   const hideMonth = (index) => {
-    console.log('duration', combinedObject.results[index].durationMonth)
     if (combinedObject.results[index].durationMonth === 'Completed') {
       return 'hidden'
     }
@@ -66,7 +79,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
             <tbody key={index}>
               <tr className="name-tr-table">
                 <td>
-                  <input type="checkbox" id={index}></input>
+                  <input type="checkbox" id={index} onChange={(e)=>getLikedCandidate(e)}></input>
                 </td>
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
