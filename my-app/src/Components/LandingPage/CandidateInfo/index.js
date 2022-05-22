@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 import { fetchBizIdea } from "../../../functions/api";
+
+//Import components
+import {InfoHeader} from "../InfoHeader/index";
 
 //Import CSS
 import "./CandidateInfo.css";
@@ -31,10 +35,17 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
   const renderBizIdea = (index)=>{
     if (Object.keys(combinedObject).length !==0) {
       return (
-        <div>
-          <span>{combinedObject.results[index].bizModel.this}</span>
-          <span>{combinedObject.results[index].bizModel.that}</span>
-          <span>{combinedObject.results[index].durationMonth}</span>
+        <div className="biz-idea-container">
+          <div className="biz-idea-row">
+            <div className="biz-idea-col">
+              <p>{combinedObject.results[index].bizModel.this}</p>
+              <p>{combinedObject.results[index].bizModel.that}</p>
+            </div>
+            <div className="biz-idea-duration">
+              <p>{combinedObject.results[index].durationMonth}</p>
+            </div>
+          </div>
+
         </div>
       );
     };
@@ -55,8 +66,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
                 alt={`${values.name.first} ${values.name.last}`}
               />
               <div className="candidate-name">
-                <p className="first">{values.name.first}</p>
-                <p className="last">{values.name.last}</p>
+          <p className="first">{values.name.first} {values.name.last}</p>
                 <span className="biz-idea">
                   {renderBizIdea(index)}
                 </span>
@@ -72,6 +82,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
 
   return (
     <div className="candidate-row-section">
+      <InfoHeader/>
       {renderCandidates()}
     </div>
   );
