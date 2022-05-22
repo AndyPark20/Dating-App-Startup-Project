@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { fetchBizIdea } from "../../../functions/api";
 
 //Import components
-import {InfoHeader} from "../InfoHeader/index";
+import { InfoHeader } from "../InfoHeader/index";
 
 //Import CSS
 import "./CandidateInfo.css";
@@ -11,41 +11,36 @@ import "./CandidateInfo.css";
 //Import function
 import { createRandomMonth } from "../../../functions/api/"
 
-export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration }) => {
+export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration }) => {
 
   const [bizIdeaList, updateBizIdeaList] = useState([]);
   const [combinedObject, updateCombinedObject] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     /*combine all fetched data, random month, and random cost into single object so that it can be
     saved when user clicks like*/
 
-    if(candidateApiData.results){
+    if (candidateApiData.results) {
       candidateApiData.results.forEach((values, index) => {
-        return(
+        return (
           values['durationMonth'] = projectDuration[index],
           values['bizModel'] = randomBizApi[index]
         );
       });
-     updateCombinedObject(candidateApiData);
+      updateCombinedObject(candidateApiData);
     };
   });
 
   //Function to render random biz ideas from randomBizApi that is passed as props from parent component
-  const renderBizIdea = (index)=>{
-    if (Object.keys(combinedObject).length !==0) {
+  const renderBizIdea = (index) => {
+    if (Object.keys(combinedObject).length !== 0) {
       return (
-        <div className="biz-idea-container">
-          <div className="biz-idea-row">
-            <div className="biz-idea-col">
-              <p>{combinedObject.results[index].bizModel.this}</p>
-              <p>{combinedObject.results[index].bizModel.that}</p>
-            </div>
-            <div className="biz-idea-duration">
-              <p>{combinedObject.results[index].durationMonth}</p>
-            </div>
-          </div>
-
+        <div className="biz-model-container">
+          <tr className="biz-tr-table">
+            <td>{combinedObject.results[index].bizModel.this}</td>
+            <td>{combinedObject.results[index].bizModel.that}</td>
+            <td>{combinedObject.results[index].durationMonth}</td>
+          </tr>
         </div>
       );
     };
@@ -60,18 +55,16 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
         (values, index) => {
           return (
             <div className="candidate-info">
-              <img
-              className="candidate-picture"
-                src={values.picture.large}
-                alt={`${values.name.first} ${values.name.last}`}
-              />
-              <div className="candidate-name">
-          <p className="first">{values.name.first} {values.name.last}</p>
-                <span className="biz-idea">
+              <tr className="name-tr-table">
+                <td>
+                <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`}/>
+                </td>
+                <td>{values.name.first} {values.name.last}</td>
+                <td>
                   {renderBizIdea(index)}
-                </span>
-          <span className="project-month"></span>
-              </div>
+                </td>
+              </tr>
+
             </div>
           );
         }
@@ -82,7 +75,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
 
   return (
     <div className="candidate-row-section">
-      <InfoHeader/>
+      <InfoHeader />
       {renderCandidates()}
     </div>
   );
