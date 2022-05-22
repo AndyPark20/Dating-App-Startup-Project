@@ -7,6 +7,7 @@ export const InfoHeader = ()=>{
   return(
     <thead>
           <tr>
+            <th>Like</th>
             <th></th>
             <th>Full Name:</th>
             <th>Phone:</th>
@@ -16,5 +17,5 @@ export const InfoHeader = ()=>{
             <th>Cost</th>
           </tr>
     </thead>
-  )
-}
+  );
+};

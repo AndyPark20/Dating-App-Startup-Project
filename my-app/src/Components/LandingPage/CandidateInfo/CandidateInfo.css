@@ -22,3 +22,7 @@ table, th, td {
 .currency{
   font-size:.6rem;
 }
+
+.hidden{
+  display:none;
+}

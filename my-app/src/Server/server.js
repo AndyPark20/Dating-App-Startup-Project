@@ -16,11 +16,10 @@ app.get("/api/bizIdea", async (req, res, next) => {
     const dataResult = await data.json();
     if (dataResult) {
       res.status(201).json(dataResult);
-      console.log(dataResult);
-    }
+    };
   } catch (err) {
     console.error(err);
-  }
+  };
 });
 
 app.listen(process.env.PORT, () => {

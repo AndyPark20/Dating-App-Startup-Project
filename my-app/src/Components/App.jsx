@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 //Import CSS File
 import "./App.css";
@@ -11,7 +11,7 @@ import { Footer } from './Footer';
 //Import function
 import { createRandomNumber } from '../functions/api/index';
 
-export const App =()=>{
+export const App = () => {
   //store page number for pagination feature
   const [pageNumber, updatePageNumber] = useState(createRandomNumber());
 
@@ -27,10 +27,10 @@ export const App =()=>{
           </div>
           <div className="main-section-footer-style">
             <LandingPage pageNumber={pageNumber} displayCount={displayCount} />
-            <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber}/>
+            <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};

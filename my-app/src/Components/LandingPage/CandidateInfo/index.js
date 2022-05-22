@@ -29,9 +29,18 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
         );
       });
       updateCombinedObject(candidateApiData);
-      console.log(combinedObject)
+
     };
   });
+
+  //Function to hide mos. if month is "completed" (zero)
+  const hideMonth = (index) => {
+    console.log('duration', combinedObject.results[index].durationMonth)
+    if (combinedObject.results[index].durationMonth === 'Completed') {
+      return 'hidden'
+    }
+    return 'month'
+  }
 
   //Function to render random biz ideas from randomBizApi that is passed as props from parent component
   const renderBizIdea = (index) => {
@@ -39,13 +48,11 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
       return (
         <React.Fragment>
           <td>{`It's like a ${combinedObject.results[index].bizModel.that} for ${combinedObject.results[index].bizModel.this}`}</td>
-          <td>{combinedObject.results[index].durationMonth} mos.</td>
+          <td>{combinedObject.results[index].durationMonth} <span className={hideMonth(index)}>mos.</span></td>
           <td>${combinedObject.results[index].randomCost}million <span className="currency">USD</span></td>
         </React.Fragment>
-
       );
     };
-
   };
 
   //use Map function to loop thru the userApi object
@@ -56,8 +63,11 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
         (values, index) => {
           return (
             // <span className="candidate-info">
-            <tbody>
+            <tbody key={index}>
               <tr className="name-tr-table">
+                <td>
+                  <input type="checkbox" id={index}></input>
+                </td>
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
                 </td>

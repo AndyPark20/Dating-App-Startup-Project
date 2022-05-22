@@ -22,7 +22,9 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
       try {
         //Clear project duration array everytime api is fetched.
         updateCandidateApi({});
+        updateRandomBizApi([]);
         updateProjectDuration([]);
+        updateRandomCost([]);
 
         //Call back function to fetch api with pageNumber and displaycount Value
         const candidateApiResult = await fetchCandidateApi(pageNumber, displayCount);
@@ -46,10 +48,10 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
           //Make a deep copy of the api result object before updating the state
           let deepCopyApiResult = JSON.parse(JSON.stringify(candidateApiResult));
           updateCandidateApi(deepCopyApiResult);
-        }
+        };
       } catch (err) {
         console.error(err);
-      }
+      };
     };
     getRandomUserApi();
   }, [displayCount, pageNumber]);
