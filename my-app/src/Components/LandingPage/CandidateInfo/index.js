@@ -13,25 +13,23 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
   const [combinedObject, updateCombinedObject] = useState([]);
 
   useEffect(()=>{
-    //combine all fetched data, random month, and random cost into single object
+    /*combine all fetched data, random month, and random cost into single object so that it can be
+    saved when user clicks like*/
+
     if(candidateApiData.results){
       candidateApiData.results.forEach((values, index) => {
         return(
           values['durationMonth'] = projectDuration[index],
           values['bizModel'] = randomBizApi[index]
-        )
-
-      })
+        );
+      });
      updateCombinedObject(candidateApiData);
-    }
-
-  })
+    };
+  });
 
   //Function to render random biz ideas from randomBizApi that is passed as props from parent component
   const renderBizIdea = (index)=>{
-    console.log('comvinedOBject',combinedObject.results[index])
     if (Object.keys(combinedObject).length !==0) {
-      console.log('object',combinedObject)
       return (
         <div>
           <span>{combinedObject.results[index].bizModel.this}</span>
@@ -52,6 +50,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
           return (
             <div className="candidate-info">
               <img
+              className="candidate-picture"
                 src={values.picture.large}
                 alt={`${values.name.first} ${values.name.last}`}
               />
@@ -68,13 +67,12 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi,projectDuration
         }
       );
       return invdividualCandidates;
-    }
+    };
   };
 
   return (
     <div className="candidate-row-section">
       {renderCandidates()}
-      <div></div>
     </div>
   );
 };
