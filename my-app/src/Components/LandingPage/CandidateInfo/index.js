@@ -18,6 +18,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   const [likedList, updateLikedList]=useState([]);
 
   useEffect(() => {
+    console.log('hello')
     console.log('liked', likedList)
     /*combine all fetched data, random month, and random cost into single object so that it can be
     saved when user clicks like*/
@@ -49,7 +50,6 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     }else{
       likedList.forEach((candidateValues,index)=>{
         if (selectedPhoneNumber === candidateValues.phone){
-          console.log('likedList', likedList);
           likedList.splice(index, 1)
           updateLikedList(likedList);
         };
