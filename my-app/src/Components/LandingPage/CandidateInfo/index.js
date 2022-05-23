@@ -8,6 +8,10 @@ import { InfoHeader } from "../InfoHeader/index";
 //Import CSS
 import "./CandidateInfo.css";
 
+//Import Bootstrap
+import Button from 'react-bootstrap/Button'
+
+
 //Import function
 import { createRandomMonth } from "../../../functions/api/"
 
@@ -18,7 +22,6 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   const [likedList, updateLikedList]=useState([]);
 
   useEffect(() => {
-    console.log('hello')
     console.log('liked', likedList)
     /*combine all fetched data, random month, and random cost into single object so that it can be
     saved when user clicks like*/
@@ -41,20 +44,20 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     const CheckUnCheckValue = e.target.checked;
 
     //Add or Remove Liked Candidates depending on if "like" is true or false
-    if(CheckUnCheckValue){
+
       combinedObject.results.forEach((values,index)=>{
         if(values.phone === selectedPhoneNumber){
           updateLikedList([...likedList, combinedObject.results[index]])
         };
       })
-    }else{
-      likedList.forEach((candidateValues,index)=>{
-        if (selectedPhoneNumber === candidateValues.phone){
-          likedList.splice(index, 1)
-          updateLikedList(likedList);
-        };
-      })
-    };
+
+      // likedList.forEach((candidateValues,index)=>{
+      //   if (selectedPhoneNumber === candidateValues.phone){
+      //     likedList.splice(index, 1)
+      //     updateLikedList(likedList);
+      //   };
+      // })
+
   };
 
 
@@ -90,7 +93,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
             <tbody key={index}>
               <tr className="name-tr-table">
                 <td>
-                  <input type="checkbox" id={values.phone} onChange={(e)=>getLikedCandidate(e)}></input>
+                  <Button variant="primary" id={values.phone} onClick={(e)=>getLikedCandidate(e)}>Save</Button>
                 </td>
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
