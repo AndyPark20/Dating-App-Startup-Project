@@ -36,29 +36,25 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
 
   //Function to add or remove candidate from liked list array
   const getLikedCandidate=(e)=>{
-    console.log('hello')
-    const selectedIndex = e.target.id;
+    const selectedPhoneNumber = e.target.id;
     const CheckUnCheckValue = e.target.checked;
 
-    likedList.forEach((candidateValues,index)=>{
-      if(CheckUnCheckValue && candidateValues.phone === selectedIndex){
-        updateLikedList([...likedList, combinedObject.results[index]])
-      }
-    })
-
-    // if(CheckUnCheckValue){
-    //   updateLikedList([...likedList, combinedObject.results[selectedIndex]])
-    // }else{
-    //   likedList.forEach((candidateValues,index)=>{
-    //     if (candidateValues.name.first === likedList[selectedIndex].name.first && candidateValues.name.last === likedList[selectedIndex].name.last){
-    //       console.log('index',index)
-    //       // updateLikedList(likedList.splice(index));
-    //       console.log('total likedList', likedList)
-    //       console.log('likedList', likedList[index])
-    //       console.log(candidateValues.name.first, candidateValues.name.last)
-    //     };
-    //   })
-    // };
+    //Add or Remove Liked Candidates depending on if "like" is true or false
+    if(CheckUnCheckValue){
+      combinedObject.results.forEach((values,index)=>{
+        if(values.phone === selectedPhoneNumber){
+          updateLikedList([...likedList, combinedObject.results[index]])
+        };
+      })
+    }else{
+      likedList.forEach((candidateValues,index)=>{
+        if (selectedPhoneNumber === candidateValues.phone){
+          console.log('likedList', likedList);
+          likedList.splice(index, 1)
+          updateLikedList(likedList);
+        };
+      })
+    };
   };
 
 
