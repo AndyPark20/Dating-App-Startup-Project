@@ -18,6 +18,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   const [likedList, updateLikedList]=useState([]);
 
   useEffect(() => {
+    console.log('liked', likedList)
     /*combine all fetched data, random month, and random cost into single object so that it can be
     saved when user clicks like*/
 
@@ -30,24 +31,35 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
         );
       });
       updateCombinedObject(candidateApiData);
-
     };
   });
 
-  //Function to collect index value of liked Candidates
+  //Function to add or remove candidate from liked list array
   const getLikedCandidate=(e)=>{
+    console.log('hello')
     const selectedIndex = e.target.id;
-    const CheckUnCheckValue = e.target.checked
-    if(CheckUnCheckValue){
-      updateLikedList([...likedList, combinedObject.results[selectedIndex]])
-    }else{
-      // likedList[selectedIndex]
-      // likedList.splice(selectedIndex)
-      // const removedArray = likedList.filter((likedList,index) => index !== selectedIndex)
-      // updateLikedList(likedList.splice(selectedIndex));
-    }
+    const CheckUnCheckValue = e.target.checked;
 
-  }
+    likedList.forEach((candidateValues,index)=>{
+      if(CheckUnCheckValue && candidateValues.phone === selectedIndex){
+        updateLikedList([...likedList, combinedObject.results[index]])
+      }
+    })
+
+    // if(CheckUnCheckValue){
+    //   updateLikedList([...likedList, combinedObject.results[selectedIndex]])
+    // }else{
+    //   likedList.forEach((candidateValues,index)=>{
+    //     if (candidateValues.name.first === likedList[selectedIndex].name.first && candidateValues.name.last === likedList[selectedIndex].name.last){
+    //       console.log('index',index)
+    //       // updateLikedList(likedList.splice(index));
+    //       console.log('total likedList', likedList)
+    //       console.log('likedList', likedList[index])
+    //       console.log(candidateValues.name.first, candidateValues.name.last)
+    //     };
+    //   })
+    // };
+  };
 
 
   //Function to hide mos. if month is "completed" (zero)
@@ -63,7 +75,6 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     if (Object.keys(combinedObject).length !== 0) {
       return (
         <React.Fragment>
-          <td>{console.log(likedList)}</td>
           <td>{`It's like a ${combinedObject.results[index].bizModel.that} for ${combinedObject.results[index].bizModel.this}`}</td>
           <td>{combinedObject.results[index].durationMonth} <span className={hideMonth(index)}>mos.</span></td>
           <td>${combinedObject.results[index].randomCost}million <span className="currency">USD</span></td>
@@ -83,7 +94,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
             <tbody key={index}>
               <tr className="name-tr-table">
                 <td>
-                  <input type="checkbox" id={index} onChange={(e)=>getLikedCandidate(e)}></input>
+                  <input type="checkbox" id={values.phone} onChange={(e)=>getLikedCandidate(e)}></input>
                 </td>
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
