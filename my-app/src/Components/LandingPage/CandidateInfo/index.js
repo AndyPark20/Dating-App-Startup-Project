@@ -22,10 +22,9 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   const [likedList, updateLikedList]=useState([]);
 
   useEffect(() => {
-    console.log('liked', likedList)
+
     /*combine all fetched data, random month, and random cost into single object so that it can be
     saved when user clicks like*/
-
     if (candidateApiData.results) {
       candidateApiData.results.forEach((values, index) => {
         return (
@@ -38,29 +37,41 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
       });
       updateCombinedObject(candidateApiData);
     };
+    console.log('test', combinedObject)
   });
 
   //Function to add or remove candidate from liked list array
   const getLikedCandidate=(e)=>{
+
     const selectedPhoneNumber = e.target.id;
     const CheckUnCheckValue = e.target.checked;
 
     //Add or Remove Liked Candidates depending on if "like" is true or false
-
-      combinedObject.results.forEach((values,index)=>{
-        if(values.phone === selectedPhoneNumber){
-          const updatedToggleObj = {...combinedObject.results[index], toggleButton:true};
+    if(e.target.textContent ==='Save'){
+      combinedObject.results.forEach((values, index) => {
+        if (values.phone === selectedPhoneNumber) {
+          const updatedToggleObj = { ...combinedObject.results[index], toggleButton: true };
+          updateLikedList([...likedList, updatedToggleObj]);
+            combinedObject.results[index].toggleButton = true;
+          updateCombinedObject({...combinedObject});
+        };
+      })
+    }else{
+      //Remove Candidate from Liked List
+         likedList.forEach((candidateValues,index)=>{
+        if (selectedPhoneNumber === candidateValues.phone){
+          likedList.splice(index, 1)
+          updateLikedList(likedList);
+        };
+      })
+      //Return toggleButton back to false so that the button becomes back to "Save";
+      combinedObject.results.forEach((values, index) => {
+        if (values.phone === selectedPhoneNumber) {
+          const updatedToggleObj = { ...combinedObject.results[index], toggleButton: false };
           updateLikedList([...likedList, updatedToggleObj]);
         };
       })
-
-      // likedList.forEach((candidateValues,index)=>{
-      //   if (selectedPhoneNumber === candidateValues.phone){
-      //     likedList.splice(index, 1)
-      //     updateLikedList(likedList);
-      //   };
-      // })
-
+    }
   };
 
 
@@ -86,8 +97,12 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   };
 
   //Render save or Remove based on user decision
-  const textForSaveButton =(e)=>{
-    // if(updateLikedList
+  const textForSaveButton =(values)=>{
+    // console.log(values.toggleButton)
+      if(!values.toggleButton){
+        return 'Save';
+      }
+      return 'Remove';
   }
 
   //use Map function to loop thru the userApi object
@@ -101,7 +116,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
             <tbody key={index}>
               <tr className="name-tr-table">
                 <td>
-          <Button variant="primary" id={values.phone} onClick={(e)=>getLikedCandidate(e)}>{textForSaveButton()}</Button>
+          <Button variant="primary" id={values.phone} onClick={(e)=>getLikedCandidate(e)}>{textForSaveButton(values)}</Button>
                 </td>
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />

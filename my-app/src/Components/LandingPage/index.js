@@ -63,6 +63,7 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
         projectDuration={projectDuration}
         randomBizApi={randomBizApi}
         randomCost={randomCost}
+        displayCount={displayCount}
       />
     </div>
   );
