@@ -7,6 +7,7 @@ import "./App.css";
 import { LandingPage } from './LandingPage/';
 import { Menus } from './Menus';
 import { Footer } from './Footer';
+import {LikedList} from './Likedlist';
 
 //Import function
 import { createRandomNumber } from '../functions/api/index';
@@ -39,6 +40,9 @@ export const App = () => {
                     <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus} />
                     <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus} />
                   </Fragment>} />
+              </Routes>
+              <Routes>
+                <Route path="Saved" element={<LikedList/>}/>
               </Routes>
             </BrowserRouter>
             {/* // <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus}/> */}
