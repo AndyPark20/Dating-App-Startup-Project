@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 //Import CSS File
 import "./App.css";
 
 //Import Components
 import { LandingPage } from './LandingPage/';
-import { Menu } from './Menus';
+import { Menus } from './Menus';
 import { Footer } from './Footer';
 
 //Import function
 import { createRandomNumber } from '../functions/api/index';
+
+//Import React-Router
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export const App = () => {
   //store page number for pagination feature
@@ -26,12 +29,19 @@ export const App = () => {
       <div className="row">
         <div className="col main-section">
           <div className="vertical-menu">
-
           </div>
           <div className="main-section-footer-style">
-            <Menu />
-            <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus}/>
-            <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus}/>
+            <BrowserRouter>
+              <Menus />
+              <Routes>
+                <Route path="/Home" element={
+                  <Fragment>
+                    <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus} />
+                    <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus} />
+                  </Fragment>} />
+              </Routes>
+            </BrowserRouter>
+            {/* // <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus}/> */}
           </div>
         </div>
       </div>

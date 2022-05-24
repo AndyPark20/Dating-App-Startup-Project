@@ -4,10 +4,11 @@ import React from 'react';
 import './Menus.css'
 
 //Import React-Router
-import {Link} from 'react-router-dom';
+import {Link, Router} from 'react-router-dom';
 
-export const Menu =()=>{
+export const Menus =()=>{
   return(
+
     <div className="container">
       <div className="row">
         <div className="menu-col">
@@ -20,5 +21,6 @@ export const Menu =()=>{
         </div>
       </div>
     </div>
+
   );
 };
