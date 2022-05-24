@@ -4,26 +4,16 @@ import React, { useState, Fragment } from 'react';
 import "./App.css";
 
 //Import Components
-import { LandingPage } from './LandingPage/';
+import { CandidateList } from './CandidateList/';
 import { Menus } from './Menus';
-import { Footer } from './Footer';
-import {LikedList} from './Likedlist';
 
-//Import function
-import { createRandomNumber } from '../functions/api/index';
+// import { Footer } from './Footer';
+import {LikedList} from './Likedlist/';
 
 //Import React-Router
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export const App = () => {
-  //store page number for pagination feature
-  const [pageNumber, updatePageNumber] = useState(createRandomNumber());
-
-  //Store display candidates per page number
-  const [displayCount, updateDisplaycount] = useState(10);
-
-  //Toggle functionality for button to render Save or Remove
-  const [btnStatus, updateBtnStatus] = useState(false);
 
   return (
     <div className="container">
@@ -37,15 +27,13 @@ export const App = () => {
               <Routes>
                 <Route path="/Home" element={
                   <Fragment>
-                    <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus} />
-                    <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus} />
+                    <CandidateList />
                   </Fragment>} />
               </Routes>
               <Routes>
                 <Route path="Saved" element={<LikedList/>}/>
               </Routes>
             </BrowserRouter>
-            {/* // <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus}/> */}
           </div>
         </div>
       </div>
