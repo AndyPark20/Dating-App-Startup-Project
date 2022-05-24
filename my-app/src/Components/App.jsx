@@ -5,7 +5,7 @@ import "./App.css";
 
 //Import Components
 import { LandingPage } from './LandingPage/';
-import { Menu } from './VerticalMenu';
+import { Menu } from './Menus';
 import { Footer } from './Footer';
 
 //Import function
