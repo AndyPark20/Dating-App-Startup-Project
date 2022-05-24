@@ -15,14 +15,14 @@ import Button from 'react-bootstrap/Button'
 //Import function
 import { createRandomMonth } from "../../../functions/api/"
 
-export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration, randomCost, btnStatus, updateBtnStatus}) => {
+export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration, randomCost, btnStatus, updateBtnStatus }) => {
 
   const [bizIdeaList, updateBizIdeaList] = useState([]);
   const [combinedObject, updateCombinedObject] = useState([]);
   const [likedList, updateLikedList] = useState([]);
 
   useEffect(() => {
-    console.log('candidate', combinedObject)
+
     /*combine all fetched data, random month, and random cost into single object so that it can be saved when user clicks like*/
     if (candidateApiData.results && !btnStatus) {
       candidateApiData.results.forEach((values, index) => {
@@ -44,13 +44,15 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     const CheckUnCheckValue = e.target.checked;
 
     //Add or Remove Liked Candidates depending on if "like" is true or false
-    if (e.target.textContent === 'Save') {
+    if (e.target.textContent === 'Like') {
       combinedObject.results.forEach((values, index) => {
         if (values.phone === selectedPhoneNumber) {
+          //Update liked candidates array
           const updatedToggleObj = { ...combinedObject.results[index], toggleButton: true };
           updateLikedList([...likedList, updatedToggleObj]);
+          //Update liked toggleButton for all candidate list array;
           combinedObject.results[index].toggleButton = true;
-          updateCombinedObject({ ...combinedObject, toggledButton: true });
+          updateCombinedObject({ ...combinedObject });
           updateBtnStatus(true);
         };
       })
@@ -60,16 +62,18 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
         if (selectedPhoneNumber === candidateValues.phone) {
           likedList.splice(index, 1)
           updateLikedList(likedList);
+
+          //Return toggleButton back to false so that the button becomes back to "Save" (All Candidate Array);
+          combinedObject.results.forEach((values, index) => {
+            if (values.phone === selectedPhoneNumber) {
+              combinedObject.results[index].toggleButton = false;
+              const updatedToggleObj = { ...combinedObject };
+              updateCombinedObject({ ...combinedObject });
+            };
+          })
         };
       })
-      //Return toggleButton back to false so that the button becomes back to "Save";
-      combinedObject.results.forEach((values, index) => {
-        if (values.phone === selectedPhoneNumber) {
-          const updatedToggleObj = { ...combinedObject.results[index], toggleButton: false };
-          updateLikedList([...likedList, updatedToggleObj]);
-        };
-      })
-    }
+    };
   };
 
 
@@ -98,9 +102,9 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   //Render save or Remove based on user decision
   const textForSaveButton = (values) => {
     if (!values.toggleButton) {
-      return 'Save';
+      return 'Like';
     }
-    return 'Remove';
+    return 'Undo';
   }
 
   //use Map function to loop thru the userApi object

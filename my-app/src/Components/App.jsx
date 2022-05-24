@@ -5,7 +5,7 @@ import "./App.css";
 
 //Import Components
 import { LandingPage } from './LandingPage/';
-import { VerticalMenu } from './VerticalMenu';
+import { Menu } from './VerticalMenu';
 import { Footer } from './Footer';
 
 //Import function
@@ -26,9 +26,10 @@ export const App = () => {
       <div className="row">
         <div className="col main-section">
           <div className="vertical-menu">
-            <VerticalMenu />
+
           </div>
           <div className="main-section-footer-style">
+            <Menu />
             <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus}/>
             <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus}/>
           </div>
