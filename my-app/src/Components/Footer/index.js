@@ -13,12 +13,12 @@ export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber ,updateB
   const generateRandomCandidate = (e) => {
     updateDisplaycount(e.target.value);
     updatePageNumber(createRandomNumber);
-    updateBtnStatus(true);
+    updateBtnStatus(false);
   }
 
   //Click thru page Number
   const flipPageNumber =()=>{
-    updateBtnStatus(true);
+    updateBtnStatus(false);
     updatePageNumber(pageNumber+1)
   }
 

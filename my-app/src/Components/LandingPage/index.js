@@ -9,7 +9,7 @@ import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber}
 //Import CSS
 import "./LandingPage.css";
 
-export const LandingPage = ({ pageNumber, displayCount }) => {
+export const LandingPage = ({ pageNumber, displayCount, btnStatus, updateBtnStatus }) => {
 
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
@@ -64,6 +64,8 @@ export const LandingPage = ({ pageNumber, displayCount }) => {
         randomBizApi={randomBizApi}
         randomCost={randomCost}
         displayCount={displayCount}
+        updateBtnStatus={updateBtnStatus}
+        btnStatus={btnStatus}
       />
     </div>
   );

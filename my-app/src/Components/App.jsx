@@ -29,7 +29,7 @@ export const App = () => {
             <VerticalMenu />
           </div>
           <div className="main-section-footer-style">
-            <LandingPage pageNumber={pageNumber} displayCount={displayCount}/>
+            <LandingPage pageNumber={pageNumber} displayCount={displayCount} btnStatus={btnStatus} updateBtnStatus={updateBtnStatus}/>
             <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus}/>
           </div>
         </div>
