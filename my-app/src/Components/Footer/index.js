@@ -7,12 +7,19 @@ import './Footer.css';
 import { createRandomNumber} from '../../functions/api/';
 
 
-export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber }) => {
+export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber ,updateBtnStatus}) => {
 
   //Generate random candidate when user clicks more to display per page
   const generateRandomCandidate = (e) => {
     updateDisplaycount(e.target.value);
     updatePageNumber(createRandomNumber);
+    updateBtnStatus(true);
+  }
+
+  //Click thru page Number
+  const flipPageNumber =()=>{
+    updateBtnStatus(true);
+    updatePageNumber(pageNumber+1)
   }
 
 
@@ -29,7 +36,7 @@ export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber }) => {
           <p>Candidates per page</p>
         </div>
         <div className="col next-prev-view">
-          <p onClick={() => updatePageNumber(pageNumber+1)}>next</p>
+          <p onClick={() => flipPageNumber()}>next</p>
         </div>
       </div>
     </div>

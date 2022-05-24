@@ -16,7 +16,10 @@ export const App = () => {
   const [pageNumber, updatePageNumber] = useState(createRandomNumber());
 
   //Store display candidates per page number
-  const [displayCount, updateDisplaycount] = useState(10)
+  const [displayCount, updateDisplaycount] = useState(10);
+
+  //Toggle functionality for button to render Save or Remove
+  const [btnStatus, updateBtnStatus] = useState(false);
 
   return (
     <div className="container">
@@ -27,7 +30,7 @@ export const App = () => {
           </div>
           <div className="main-section-footer-style">
             <LandingPage pageNumber={pageNumber} displayCount={displayCount}/>
-            <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} />
+            <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus}/>
           </div>
         </div>
       </div>
