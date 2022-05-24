@@ -31,7 +31,9 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
         return (
           values['durationMonth'] = projectDuration[index],
           values['bizModel'] = randomBizApi[index],
-          values['randomCost'] = randomCost[index]
+          values['randomCost'] = randomCost[index],
+          //value to toggle between save or remove button text
+          values['toggleButton'] = false
         );
       });
       updateCombinedObject(candidateApiData);
@@ -47,7 +49,8 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
 
       combinedObject.results.forEach((values,index)=>{
         if(values.phone === selectedPhoneNumber){
-          updateLikedList([...likedList, combinedObject.results[index]])
+          const updatedToggleObj = {...combinedObject.results[index], toggleButton:true};
+          updateLikedList([...likedList, updatedToggleObj]);
         };
       })
 
@@ -82,6 +85,11 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
     };
   };
 
+  //Render save or Remove based on user decision
+  const textForSaveButton =(e)=>{
+    // if(updateLikedList
+  }
+
   //use Map function to loop thru the userApi object
   const renderCandidates = () => {
     //First render will be an empty array. Run when data has been retrieved
@@ -93,7 +101,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
             <tbody key={index}>
               <tr className="name-tr-table">
                 <td>
-                  <Button variant="primary" id={values.phone} onClick={(e)=>getLikedCandidate(e)}>Save</Button>
+          <Button variant="primary" id={values.phone} onClick={(e)=>getLikedCandidate(e)}>{textForSaveButton()}</Button>
                 </td>
                 <td>
                   <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
