@@ -5,14 +5,6 @@ import Button from 'react-bootstrap/Button'
 
 export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject, updateCombinedObject, updateBtnStatus, textForSaveButton }) => {
 
-  //Function to hide mos. if month is "completed" (zero)
-  const hideMonth = (index) => {
-    if (likedList[index].durationMonth === 'Completed') {
-      return 'hidden'
-    }
-    return 'month'
-  }
-
 
   //Function to add or remove candidate from liked list array
   // const getLikedCandidate = (e) => {
@@ -52,11 +44,21 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
   //   };
   // };
 
-  const renderLikedCandidates = () => {
-    console.log(likedList)
-    if (likedList) {
+  //Function to hide mos. if month is "completed" (zero)
+  const hideMonth = (index) => {
+    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
+    if (getLikedArray[index].durationMonth === 'Completed') {
+      return 'hidden'
+    }
+    return 'month'
+  }
 
-      const likedCandidatesArray = likedList.map((values, index) => {
+
+  const renderLikedCandidates = () => {
+    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
+    console.log('get',getLikedArray)
+    if (getLikedArray) {
+      const likedCandidatesArray = getLikedArray.map((values, index) => {
         return (
           <tbody>
           <tr className="name-tr-table">

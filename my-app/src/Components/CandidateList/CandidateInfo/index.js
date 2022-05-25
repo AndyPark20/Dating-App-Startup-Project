@@ -50,8 +50,13 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
           //Update liked candidates array
           const updatedToggleObj = { ...combinedObject.results[index], toggleButton: true };
           updateLikedList([...likedList, updatedToggleObj]);
+
+          //set LocalStorage
+          window.localStorage.setItem("likedArray", JSON.stringify(likedList));
+
           //Update liked toggleButton for all candidate list array;
           combinedObject.results[index].toggleButton = true;
+
           updateCombinedObject({ ...combinedObject });
           updateBtnStatus(true);
         };
@@ -62,6 +67,9 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
         if (selectedPhoneNumber === candidateValues.phone) {
           likedList.splice(index, 1)
           updateLikedList(likedList);
+
+          //set LocalStorage
+          window.localStorage.setItem("LikedArray", JSON.stringify(likedList));
 
           //Return toggleButton back to false so that the button becomes back to "Save" (All Candidate Array);
           combinedObject.results.forEach((values, index) => {
