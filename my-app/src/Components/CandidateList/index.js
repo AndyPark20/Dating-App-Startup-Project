@@ -9,7 +9,7 @@ import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber 
 //Import CSS
 import "./CandidateList.css";
 
-export const CandidateList = ({ likedList, updateLikedList, pageNumber, updatePageNumber, displayCount, updateDisplaycount, btnStatus, updateBtnStatus}) => {
+export const CandidateList = ({ updateCombinedObject, combinedObject,likedList, updateLikedList, pageNumber, updatePageNumber, displayCount, updateDisplaycount, btnStatus, updateBtnStatus}) => {
 
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
@@ -77,6 +77,8 @@ export const CandidateList = ({ likedList, updateLikedList, pageNumber, updatePa
         btnStatus={btnStatus}
         updateLikedList={updateLikedList}
         likedList={likedList}
+        updateCombinedObject={updateCombinedObject}
+        combinedObject={combinedObject}
       />
     </div>
   );

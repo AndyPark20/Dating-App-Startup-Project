@@ -32,6 +32,8 @@ export const App = () => {
   //Toggle functionality for button to render Save or Remove
   const [btnStatus, updateBtnStatus] = useState(false);
 
+  const [combinedObject, updateCombinedObject] = useState([]);
+
   return (
     <div className="container">
       <div className="row">
@@ -56,6 +58,8 @@ export const App = () => {
                       updateBtnStatus={updateBtnStatus}
                       likedList={likedList}
                       updateLikedList={updateLikedList}
+                      updateCombinedObject={updateCombinedObject}
+                      combinedObject={combinedObject}
                     />
                     <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus} />
                   </Fragment>} />

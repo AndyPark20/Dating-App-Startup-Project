@@ -15,21 +15,19 @@ import Button from 'react-bootstrap/Button'
 //Import function
 import { createRandomMonth } from "../../../functions/api/"
 
-export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration, randomCost, btnStatus, updateBtnStatus, updateLikedList, likedList }) => {
+export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuration, randomCost, btnStatus, updateBtnStatus, updateLikedList, likedList,updateCombinedObject, combinedObject }) => {
 
   const [bizIdeaList, updateBizIdeaList] = useState([]);
-  const [combinedObject, updateCombinedObject] = useState([]);
-  // const [likedList, updateLikedList] = useState([]);
+
 
   useEffect(() => {
     if(likedList){
       //set LocalStorage
       window.localStorage.setItem("likedArray", JSON.stringify(likedList));
-    }
-    console.log('btnStatus', btnStatus)
+    };
+
     /*combine all fetched data, random month, and random cost into single object so that it can be saved when user clicks like*/
     if (candidateApiData.results && !btnStatus) {
-      console.log(candidateApiData.results)
       candidateApiData.results.forEach((values, index) => {
         return (
           values['durationMonth'] = projectDuration[index],
