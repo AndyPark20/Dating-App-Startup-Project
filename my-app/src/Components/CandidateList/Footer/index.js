@@ -4,7 +4,7 @@ import React from 'react';
 import './Footer.css';
 
 //Import function
-import { createRandomNumber} from '../../functions/api/';
+import { createRandomNumber} from '../../../functions/api';
 
 
 export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber ,updateBtnStatus}) => {

@@ -2,20 +2,30 @@ import React, { useEffect, useState } from "react";
 
 //Import child components
 import { RenderCandidate } from "./CandidateInfo";
+import { Footer } from "./Footer";
 
 //Import functions
-import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber} from "../../functions/api";
+import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber } from "../../functions/api/";
 
 //Import CSS
-import "./LandingPage.css";
+import "./CandidateList.css";
 
-export const LandingPage = ({ pageNumber, displayCount, btnStatus, updateBtnStatus }) => {
+export const CandidateList = ({likedList,updateLikedList}) => {
 
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
   const [randomBizApi, updateRandomBizApi] = useState([]);
   const [projectDuration, updateProjectDuration] = useState([]);
   const [randomCost, updateRandomCost] = useState([]);
+
+  //store page number for pagination feature
+  const [pageNumber, updatePageNumber] = useState(createRandomNumber());
+
+  //Store display candidates per page number
+  const [displayCount, updateDisplaycount] = useState(10);
+
+  //Toggle functionality for button to render Save or Remove
+  const [btnStatus, updateBtnStatus] = useState(false);
 
   useEffect(() => {
     const getRandomUserApi = async () => {
@@ -66,7 +76,15 @@ export const LandingPage = ({ pageNumber, displayCount, btnStatus, updateBtnStat
         displayCount={displayCount}
         updateBtnStatus={updateBtnStatus}
         btnStatus={btnStatus}
+        updateLikedList={updateLikedList}
+        likedList={likedList}
+
       />
+      <Footer
+      updateDisplaycount={updateDisplaycount}
+      updatePageNumber={updatePageNumber}
+      pageNumber={pageNumber}
+      updateBtnStatus={updateBtnStatus} />
     </div>
   );
 };
