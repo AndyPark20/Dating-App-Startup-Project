@@ -10,7 +10,7 @@ import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber 
 //Import CSS
 import "./CandidateList.css";
 
-export const CandidateList = () => {
+export const CandidateList = ({likedList,updateLikedList}) => {
 
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
@@ -76,6 +76,9 @@ export const CandidateList = () => {
         displayCount={displayCount}
         updateBtnStatus={updateBtnStatus}
         btnStatus={btnStatus}
+        updateLikedList={updateLikedList}
+        likedList={likedList}
+
       />
       <Footer
       updateDisplaycount={updateDisplaycount}

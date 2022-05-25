@@ -15,6 +15,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export const App = () => {
 
+  //State to track liked candidates
+  const [likedList, updateLikedList] = useState([]);
+
   return (
     <div className="container">
       <div className="row">
@@ -27,11 +30,11 @@ export const App = () => {
               <Routes>
                 <Route path="/Home" element={
                   <Fragment>
-                    <CandidateList />
+                    <CandidateList likedList={likedList} updateLikedList={updateLikedList}/>
                   </Fragment>} />
               </Routes>
               <Routes>
-                <Route path="Saved" element={<LikedList/>}/>
+                <Route path="/Saved" element={<LikedList likedList={likedList}/>}/>
               </Routes>
             </BrowserRouter>
           </div>
