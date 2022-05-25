@@ -8,7 +8,7 @@ import { CandidateList } from './CandidateList/';
 import { Menus } from './Menus';
 
 // import { Footer } from './Footer';
-import {LikedList} from './Likedlist/';
+import { LikedList } from './LikedList/';
 
 //Import React-Router
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -29,17 +29,14 @@ export const App = () => {
               <Menus />
               <Routes>
                 <Route path="/Home" element={
-                  <Fragment>
-                    <CandidateList likedList={likedList} updateLikedList={updateLikedList}/>
-                  </Fragment>} />
-              </Routes>
-              <Routes>
-                <Route path="/Saved" element={<LikedList likedList={likedList}/>}/>
+                  <CandidateList likedList={likedList} updateLikedList={updateLikedList} />
+                }/>
+                <Route path="/Saved" element={<LikedList likedList={likedList} updateLikedList={updateLikedList}/>} />
               </Routes>
             </BrowserRouter>
           </div>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
