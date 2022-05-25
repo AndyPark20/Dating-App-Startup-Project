@@ -9,7 +9,6 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
   const [count,updateCount] = useState(likedList.length);
 
   useEffect(()=>{
-    console.log(likedList.length)
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
     if(getLikedArray){
       updateLikedList(getLikedArray)
@@ -85,7 +84,6 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
   const renderLikedCandidates = () => {
 
     if (likedList) {
-      console.log('likedList from liked Candidate', likedList)
       const likedCandidatesArray = likedList.map((values, index) => {
         return (
           <tbody>

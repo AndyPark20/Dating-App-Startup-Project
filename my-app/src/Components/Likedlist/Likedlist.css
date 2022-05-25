@@ -1,0 +1,12 @@
+.candidate-master-container{
+  width: 100%;
+    overflow-y: scroll;
+    position: relative;
+    height: 80vh;
+    margin-top: 5%;
+    background: white;
+}
+
+.table-styling{
+  width: 100%;
+}

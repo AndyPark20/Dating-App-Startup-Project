@@ -1,19 +1,21 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 //Import components
-import {InfoHeader} from '../CandidateList/InfoHeader/';
-import {LikedCandidateInfo} from '../LikedList/LikedCandidateInfo/';
+import { InfoHeader } from '../CandidateList/InfoHeader/';
+import { LikedCandidateInfo } from '../LikedList/LikedCandidateInfo/';
 
 
 
-export const LikedList =({likedList, updateLikedList})=>{
+export const LikedList = ({ likedList, updateLikedList }) => {
 
-  return(
+  return (
     <React.Fragment>
-      <table>
-      <InfoHeader />
-      <LikedCandidateInfo likedList={likedList} updateLikedList={updateLikedList}/>
-      </table>
+      <div className="candidate-master-container">
+        <table className="table-styling">
+          <InfoHeader />
+          <LikedCandidateInfo likedList={likedList} updateLikedList={updateLikedList} />
+        </table>
+      </div>
     </React.Fragment>
 
 
