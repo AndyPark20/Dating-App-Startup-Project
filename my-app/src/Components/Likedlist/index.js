@@ -2,20 +2,20 @@ import React,{useState} from 'react';
 
 //Import components
 import {InfoHeader} from '../CandidateList/InfoHeader/';
+import {LikedCandidateInfo} from '../LikedList/LikedCandidateInfo/';
 
 
 
 export const LikedList =({likedList})=>{
 
-  useState(() => {
-    if (likedList){
-      console.log(likedList)
-    }
-})
-
   return(
-    <div>
-      <InfoHeader/>
-    </div>
+    <React.Fragment>
+      <table>
+      <InfoHeader />
+      <LikedCandidateInfo likedList={likedList}/>
+      </table>
+    </React.Fragment>
+
+
   )
 }
