@@ -1,10 +1,20 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 
 import Button from 'react-bootstrap/Button'
 
 
 export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject, updateCombinedObject, updateBtnStatus}) => {
 
+  //State to track length of liked List Array for useEffect Controll
+  const [count,updateCount] = useState(likedList.length);
+
+  useEffect(()=>{
+    console.log(likedList.length)
+    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
+    if(getLikedArray){
+      updateLikedList(getLikedArray)
+    }
+  },[count])
 
   // //Function to add or remove candidate from liked list array
   // const getLikedCandidate = (e) => {
@@ -44,15 +54,28 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
   //   };
   // };
 
+  //Function to delete delete card
+  const deleteCard =(e,index)=>{
+     if(e.target.textContent ==='Delete'){
+      likedList.splice(index,1);
+       updateLikedList(likedList);
+       updateCount(likedList.length)
+       window.localStorage.setItem("likedArray", JSON.stringify(likedList));
+
+     };
+  };
+
   //Render Button title
-  const buttonStatus=()=>{
-console.log('hello')
+  const buttonStatus=(values)=>{
+    if(values.toggleButton){
+      return 'Delete'
+    }
   }
 
   //Function to hide mos. if month is "completed" (zero)
   const hideMonth = (index) => {
-    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
-    if (getLikedArray[index].durationMonth === 'Completed') {
+
+    if (likedList[index].durationMonth === 'Completed') {
       return 'hidden'
     }
     return 'month'
@@ -60,15 +83,15 @@ console.log('hello')
 
 
   const renderLikedCandidates = () => {
-    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
-    console.log('get',getLikedArray)
-    if (getLikedArray) {
-      const likedCandidatesArray = getLikedArray.map((values, index) => {
+
+    if (likedList) {
+      console.log('likedList from liked Candidate', likedList)
+      const likedCandidatesArray = likedList.map((values, index) => {
         return (
           <tbody>
           <tr className="name-tr-table">
             <td>
-              <Button variant="primary" id={values.phone}>{buttonStatus()}</Button>
+              <Button variant="primary" id={values.phone} onClick={(e)=>deleteCard(e,index)}>{buttonStatus(values)}</Button>
             </td>
             <td>
               <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />

@@ -6,13 +6,13 @@ import {LikedCandidateInfo} from '../LikedList/LikedCandidateInfo/';
 
 
 
-export const LikedList =({likedList})=>{
+export const LikedList =({likedList, updateLikedList})=>{
 
   return(
     <React.Fragment>
       <table>
       <InfoHeader />
-      <LikedCandidateInfo likedList={likedList}/>
+      <LikedCandidateInfo likedList={likedList} updateLikedList={updateLikedList}/>
       </table>
     </React.Fragment>
 

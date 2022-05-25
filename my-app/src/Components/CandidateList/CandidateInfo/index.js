@@ -23,6 +23,10 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
 
   useEffect(() => {
 
+    if(likedList){
+      //set LocalStorage
+      window.localStorage.setItem("likedArray", JSON.stringify(likedList));
+    }
     /*combine all fetched data, random month, and random cost into single object so that it can be saved when user clicks like*/
     if (candidateApiData.results && !btnStatus) {
       candidateApiData.results.forEach((values, index) => {
@@ -51,8 +55,6 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
           const updatedToggleObj = { ...combinedObject.results[index], toggleButton: true };
           updateLikedList([...likedList, updatedToggleObj]);
 
-          //set LocalStorage
-          window.localStorage.setItem("likedArray", JSON.stringify(likedList));
 
           //Update liked toggleButton for all candidate list array;
           combinedObject.results[index].toggleButton = true;
@@ -68,8 +70,6 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
           likedList.splice(index, 1)
           updateLikedList(likedList);
 
-          //set LocalStorage
-          window.localStorage.setItem("LikedArray", JSON.stringify(likedList));
 
           //Return toggleButton back to false so that the button becomes back to "Save" (All Candidate Array);
           combinedObject.results.forEach((values, index) => {
