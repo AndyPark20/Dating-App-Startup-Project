@@ -3,15 +3,15 @@ import React,{useEffect} from 'react';
 import Button from 'react-bootstrap/Button'
 
 
-export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject, updateCombinedObject, updateBtnStatus, textForSaveButton }) => {
+export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject, updateCombinedObject, updateBtnStatus}) => {
 
 
-  //Function to add or remove candidate from liked list array
+  // //Function to add or remove candidate from liked list array
   // const getLikedCandidate = (e) => {
   //   const selectedPhoneNumber = e.target.id;
   //   const CheckUnCheckValue = e.target.checked;
 
-  //   //Add or Remove Liked Candidates depending on if "like" is true or false
+  // //   //Add or Remove Liked Candidates depending on if "like" is true or false
   //   if (e.target.textContent === 'Like') {
   //     combinedObject.results.forEach((values, index) => {
   //       if (values.phone === selectedPhoneNumber) {
@@ -44,6 +44,11 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
   //   };
   // };
 
+  //Render Button title
+  const buttonStatus=()=>{
+console.log('hello')
+  }
+
   //Function to hide mos. if month is "completed" (zero)
   const hideMonth = (index) => {
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
@@ -63,7 +68,7 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
           <tbody>
           <tr className="name-tr-table">
             <td>
-              {/* <Button variant="primary" id={values.phone} onClick={(e) => getLikedCandidate(e)}>{textForSaveButton(values)}</Button> */}
+              <Button variant="primary" id={values.phone}>{buttonStatus()}</Button>
             </td>
             <td>
               <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
