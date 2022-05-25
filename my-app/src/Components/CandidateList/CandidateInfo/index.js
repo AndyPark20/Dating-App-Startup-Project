@@ -22,7 +22,7 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   // const [likedList, updateLikedList] = useState([]);
 
   useEffect(() => {
-
+    console.log(btnStatus)
     if(likedList){
       //set LocalStorage
       window.localStorage.setItem("likedArray", JSON.stringify(likedList));
