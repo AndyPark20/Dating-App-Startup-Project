@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 //Import child components
 import { RenderCandidate } from "./CandidateInfo";
-import { Footer } from "./Footer";
 
 //Import functions
 import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber } from "../../functions/api/";
@@ -10,7 +9,7 @@ import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber 
 //Import CSS
 import "./CandidateList.css";
 
-export const CandidateList = ({likedList,updateLikedList}) => {
+export const CandidateList = ({ likedList, updateLikedList, pageNumber, updatePageNumber, displayCount, updateDisplaycount, btnStatus, updateBtnStatus}) => {
 
   //Store object retrieved from Api fetch in order to pass down as props to child components
   const [candidateApi, updateCandidateApi] = useState({});
@@ -18,14 +17,14 @@ export const CandidateList = ({likedList,updateLikedList}) => {
   const [projectDuration, updateProjectDuration] = useState([]);
   const [randomCost, updateRandomCost] = useState([]);
 
-  //store page number for pagination feature
-  const [pageNumber, updatePageNumber] = useState(createRandomNumber());
+  // //store page number for pagination feature
+  // const [pageNumber, updatePageNumber] = useState(createRandomNumber());
 
-  //Store display candidates per page number
-  const [displayCount, updateDisplaycount] = useState(10);
+  // //Store display candidates per page number
+  // const [displayCount, updateDisplaycount] = useState(10);
 
-  //Toggle functionality for button to render Save or Remove
-  const [btnStatus, updateBtnStatus] = useState(false);
+  // //Toggle functionality for button to render Save or Remove
+  // const [btnStatus, updateBtnStatus] = useState(false);
 
   useEffect(() => {
     const getRandomUserApi = async () => {
@@ -78,13 +77,7 @@ export const CandidateList = ({likedList,updateLikedList}) => {
         btnStatus={btnStatus}
         updateLikedList={updateLikedList}
         likedList={likedList}
-
       />
-      <Footer
-      updateDisplaycount={updateDisplaycount}
-      updatePageNumber={updatePageNumber}
-      pageNumber={pageNumber}
-      updateBtnStatus={updateBtnStatus} />
     </div>
   );
 };

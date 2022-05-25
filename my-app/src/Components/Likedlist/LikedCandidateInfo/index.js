@@ -112,7 +112,5 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
     <React.Fragment>
         {renderLikedCandidates()}
     </React.Fragment>
-
-
   )
 };

@@ -22,13 +22,14 @@ export const RenderCandidate = ({ candidateApiData, randomBizApi, projectDuratio
   // const [likedList, updateLikedList] = useState([]);
 
   useEffect(() => {
-    console.log(btnStatus)
     if(likedList){
       //set LocalStorage
       window.localStorage.setItem("likedArray", JSON.stringify(likedList));
     }
+    console.log('btnStatus', btnStatus)
     /*combine all fetched data, random month, and random cost into single object so that it can be saved when user clicks like*/
     if (candidateApiData.results && !btnStatus) {
+      console.log(candidateApiData.results)
       candidateApiData.results.forEach((values, index) => {
         return (
           values['durationMonth'] = projectDuration[index],
