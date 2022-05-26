@@ -6,14 +6,14 @@ import { LikedCandidateInfo } from '../LikedList/LikedCandidateInfo/';
 
 
 
-export const LikedList = ({ likedList, updateLikedList }) => {
+export const LikedList = () => {
 
   return (
     <React.Fragment>
       <div className="candidate-master-container">
         <table className="table-styling">
           <InfoHeader />
-          <LikedCandidateInfo likedList={likedList} updateLikedList={updateLikedList} />
+          <LikedCandidateInfo/>
         </table>
       </div>
     </React.Fragment>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 //Import child components
 import { RenderCandidate } from "./CandidateInfo";
@@ -9,77 +9,55 @@ import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber 
 //Import CSS
 import "./CandidateList.css";
 
-export const CandidateList = ({ updateCombinedObject, combinedObject,likedList, updateLikedList, pageNumber, updatePageNumber, displayCount, updateDisplaycount, btnStatus, updateBtnStatus}) => {
+//
+import { Context } from '../App';
 
-  //Store object retrieved from Api fetch in order to pass down as props to child components
-  const [candidateApi, updateCandidateApi] = useState({});
-  const [randomBizApi, updateRandomBizApi] = useState([]);
-  const [projectDuration, updateProjectDuration] = useState([]);
-  const [randomCost, updateRandomCost] = useState([]);
+export const CandidateList = () => {
 
-  // //store page number for pagination feature
-  // const [pageNumber, updatePageNumber] = useState(createRandomNumber());
-
-  // //Store display candidates per page number
-  // const [displayCount, updateDisplaycount] = useState(10);
-
-  // //Toggle functionality for button to render Save or Remove
-  // const [btnStatus, updateBtnStatus] = useState(false);
+  const candidateListContext = React.useContext(Context);
 
   useEffect(() => {
     const getRandomUserApi = async () => {
       try {
         //Clear project duration array everytime api is fetched.
-        updateCandidateApi({});
-        updateRandomBizApi([]);
-        updateProjectDuration([]);
-        updateRandomCost([]);
+        candidateListContext.updateCandidateApi({});
+        candidateListContext.updateRandomBizApi([]);
+        candidateListContext.updateProjectDuration([]);
+        candidateListContext.updateRandomCost([]);
 
         //Call back function to fetch api with pageNumber and displaycount Value
-        const candidateApiResult = await fetchCandidateApi(pageNumber, displayCount);
+        const candidateApiResult = await fetchCandidateApi(candidateListContext.pageNumber, candidateListContext.displayCount);
         if (candidateApiResult) {
           //fetch Random Biz Idea API
           const bizIdeaData = await Promise.all(
             candidateApiResult.results.map(async (values, index) => {
 
               //Create random month based on the length of populated candidate Array
-              updateProjectDuration(projectDuration => [...projectDuration, createRandomMonth()]);
+              candidateListContext.updateProjectDuration(projectDuration => [...projectDuration, createRandomMonth()]);
 
               //Create random cost based on the length of populated candidate array
-              updateRandomCost(randomCost => [...randomCost, createRandomNumber()]);
+              candidateListContext.updateRandomCost(randomCost => [...randomCost, createRandomNumber()]);
 
               //Return data from random biz idea api
               return fetchBizIdea();
             })
           );
-          updateRandomBizApi([...bizIdeaData]);
+          candidateListContext.updateRandomBizApi([...bizIdeaData]);
 
           //Make a deep copy of the api result object before updating the state
           let deepCopyApiResult = JSON.parse(JSON.stringify(candidateApiResult));
-          updateCandidateApi(deepCopyApiResult);
+          candidateListContext.updateCandidateApi(deepCopyApiResult);
         };
       } catch (err) {
         console.error(err);
       };
     };
     getRandomUserApi();
-  }, [displayCount, pageNumber]);
+  }, [candidateListContext.displayCount, candidateListContext.pageNumber]);
 
   return (
     <div className="candidate-master-container">
-      <RenderCandidate
-        candidateApiData={candidateApi}
-        projectDuration={projectDuration}
-        randomBizApi={randomBizApi}
-        randomCost={randomCost}
-        displayCount={displayCount}
-        updateBtnStatus={updateBtnStatus}
-        btnStatus={btnStatus}
-        updateLikedList={updateLikedList}
-        likedList={likedList}
-        updateCombinedObject={updateCombinedObject}
-        combinedObject={combinedObject}
-      />
+      <RenderCandidate />
     </div>
   );
 };

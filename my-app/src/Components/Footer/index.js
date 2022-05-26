@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext}from 'react';
 
 //Import CSS
 import './Footer.css';
@@ -6,20 +6,23 @@ import './Footer.css';
 //Import function
 import { createRandomNumber} from '../../functions/api';
 
+import {Context} from '../App';
 
-export const Footer = ({ updateDisplaycount,updatePageNumber,pageNumber ,updateBtnStatus}) => {
+export const Footer = () => {
+
+  const footerContext = React.useContext(Context)
 
   //Generate random candidate when user clicks more to display per page
   const generateRandomCandidate = (e) => {
-    updateDisplaycount(e.target.value);
-    updatePageNumber(createRandomNumber);
-    updateBtnStatus(false);
+    footerContext.updateDisplaycount(e.target.value);
+    footerContext.updatePageNumber(createRandomNumber);
+    footerContext.updateBtnStatus(false);
   }
 
   //Click thru page Number
   const flipPageNumber =()=>{
-    updateBtnStatus(false);
-    updatePageNumber(pageNumber+1)
+    footerContext.updateBtnStatus(false);
+    footerContext.updatePageNumber(footerContext.pageNumber+1)
   }
 
 
