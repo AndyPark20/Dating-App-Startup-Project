@@ -1,12 +1,15 @@
-import React,{useContext}from 'react';
+import React, { useContext } from 'react';
 
 //Import CSS
 import './Footer.css';
 
 //Import function
-import { createRandomNumber} from '../../functions/api';
+import { createRandomNumber } from '../../functions/api';
 
-import {Context} from '../App';
+import Button from 'react-bootstrap/Button';
+
+//Import Provider Context
+import { Context } from '../App';
 
 export const Footer = () => {
 
@@ -20,28 +23,41 @@ export const Footer = () => {
   }
 
   //Click thru page Number
-  const flipPageNumber =()=>{
+  const flipPageNumber = () => {
     footerContext.updateBtnStatus(false);
-    footerContext.updatePageNumber(footerContext.pageNumber+1)
+    footerContext.updatePageNumber(footerContext.pageNumber + 1)
   }
 
+  //Function to toggle between Delete All button OR Display Candidates per page
+  const toggleFooter = () => {
+    if (!footerContext.toggleFooter) {
+      return (
+        <div className="footer-row">
+          <div className="col page-per-view">
+            <p>Display</p>
+            <select onChange={(e) => generateRandomCandidate(e)}>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
+            <p>Candidates per page</p>
+          </div>
+          <div className="col next-prev-view">
+            <p onClick={() => flipPageNumber()}>next</p>
+          </div>
+        </div>
+      )
+    }
+    return (
+      <div className="footer-row">
+        <Button type="button" variant="danger">Danger</Button>
+      </div>
+    )
+  }
 
   return (
     <div className="footer-container">
-      <div className="footer-row">
-        <div className="col page-per-view">
-          <p>Display</p>
-          <select onChange={(e) => generateRandomCandidate(e)}>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-          <p>Candidates per page</p>
-        </div>
-        <div className="col next-prev-view">
-          <p onClick={() => flipPageNumber()}>next</p>
-        </div>
-      </div>
+      {toggleFooter()}
     </div>
   );
 };

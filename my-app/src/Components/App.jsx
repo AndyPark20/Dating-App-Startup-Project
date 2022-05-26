@@ -30,6 +30,7 @@ export const App = () => {
   const [displayCount, updateDisplaycount] = useState(10);
   //Toggle functionality for button to render Save or Remove
   const [btnStatus, updateBtnStatus] = useState(false);
+  //Object hold all the combined data including candidate, biz api, randomCost, and Idea
   const [combinedObject, updateCombinedObject] = useState([]);
   //Randomly Generated Candidate Api
   const [candidateApi, updateCandidateApi] = useState({});
@@ -39,8 +40,10 @@ export const App = () => {
   const [projectDuration, updateProjectDuration] = useState([]);
   //Randomly Generated RandomCost
   const [randomCost, updateRandomCost] = useState([]);
-  //Generated business Idea state
+  //Generated business Idea
   const [bizIdeaList, updateBizIdeaList] = useState([]);
+  //Toggle between display candidate per page and Delete all button (candidate list vs liked list)
+  const [toggleFooter, updateToggleFooter] = useState(false);
 
 
 
@@ -49,7 +52,7 @@ export const App = () => {
       candidateApi, updateCandidateApi, randomBizApi, updateRandomBizApi,
       projectDuration, updateProjectDuration, randomCost, updateRandomCost, displayCount, updateDisplaycount,
       updateBtnStatus,btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
-      updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber
+      updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter
     }}>
       <div className="container">
         <div className="row">
