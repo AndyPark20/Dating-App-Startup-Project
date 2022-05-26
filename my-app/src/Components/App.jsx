@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 
 //Import CSS File
 import "./App.css";
@@ -34,6 +34,11 @@ export const App = () => {
 
   const [combinedObject, updateCombinedObject] = useState([]);
 
+  useEffect(()=>{
+      console.log('combinedObject APP', combinedObject)
+  })
+
+
   return (
     <div className="container">
       <div className="row">
@@ -64,7 +69,7 @@ export const App = () => {
                     <Footer updateDisplaycount={updateDisplaycount} updatePageNumber={updatePageNumber} pageNumber={pageNumber} updateBtnStatus={updateBtnStatus} />
                   </Fragment>} />
                 }/>
-                <Route path="/Saved" element={<LikedList likedList={likedList} updateLikedList={updateLikedList} />} />
+                <Route path="/Saved" element={<LikedList likedList={likedList} updateLikedList={updateLikedList} combinedObject={combinedObject} updateCombinedObject={updateCombinedObject}/>} />
               </Routes>
             </BrowserRouter>
           </div>

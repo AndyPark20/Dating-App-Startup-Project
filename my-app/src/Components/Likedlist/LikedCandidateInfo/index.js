@@ -9,6 +9,7 @@ export const LikedCandidateInfo = ({ likedList, updateLikedList, combinedObject,
   const [count,updateCount] = useState(likedList.length);
 
   useEffect(()=>{
+    console.log('combinedObject', combinedObject)
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
     if(getLikedArray){
       updateLikedList(getLikedArray)
