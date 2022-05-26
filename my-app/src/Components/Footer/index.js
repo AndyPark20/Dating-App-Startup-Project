@@ -28,9 +28,14 @@ export const Footer = () => {
     footerContext.updatePageNumber(footerContext.pageNumber + 1)
   };
 
-  useEffect(() => {
-    console.log(footerContext.toggleFooter);
-  })
+
+  //Function to delete all liked candidate and update local Storage
+  const wipeLikedCandidate =()=>{
+    //Update Liked List Array
+    footerContext.updateLikedList([]);
+    //Update Localstorage
+    window.localStorage.setItem("likedArray", JSON.stringify([]));
+  }
 
   //Function to toggle between Delete All button OR Display Candidates per page
   const toggleFooter = () => {
@@ -53,8 +58,8 @@ export const Footer = () => {
       );
     }
     return (
-      <div className="footer-row">
-        <Button type="button" variant="danger">Danger</Button>
+      <div className="footer-row" onClick={() => wipeLikedCandidate()}>
+        <Button type="button" variant="danger">Reject All</Button>
       </div>
     );
   };

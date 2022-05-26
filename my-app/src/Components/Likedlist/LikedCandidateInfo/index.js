@@ -24,7 +24,7 @@ export const LikedCandidateInfo = () => {
   //Function to delete delete card
   const deleteCard = (e, index) => {
     const selectedPhoneNumber = e.target.id;
-    if (e.target.textContent === 'Delete') {
+    if (e.target.textContent === 'Reject') {
       likedContext.likedList.splice(index, 1);
       likedContext.updateLikedList(likedContext.likedList);
       updateCount(likedContext.likedList.length);
@@ -46,7 +46,7 @@ export const LikedCandidateInfo = () => {
   //Render Button title
   const buttonStatus = (values) => {
     if (values.toggleButton) {
-      return 'Delete'
+      return 'Reject'
     }
   }
 
