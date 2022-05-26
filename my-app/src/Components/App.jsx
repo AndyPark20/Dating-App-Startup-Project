@@ -46,12 +46,11 @@ export const App = () => {
   const [toggleFooter, updateToggleFooter] = useState(false);
 
 
-
   return (
     <Context.Provider value={{
       candidateApi, updateCandidateApi, randomBizApi, updateRandomBizApi,
       projectDuration, updateProjectDuration, randomCost, updateRandomCost, displayCount, updateDisplaycount,
-      updateBtnStatus,btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
+      updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter
     }}>
       <div className="container">
@@ -65,11 +64,16 @@ export const App = () => {
                 <Routes>
                   <Route path="/Home" element={
                     <Fragment>
-                      <CandidateList/>
+                      <CandidateList />
                       <Footer />
                     </Fragment>} />
                 }/>
-                <Route path="/Saved" element={<LikedList/>} />
+                <Route path="/Saved" element={
+                    <Fragment>
+                      <LikedList />
+                      <Footer />
+                    </Fragment>
+                  } />
                 </Routes>
               </BrowserRouter>
             </div>

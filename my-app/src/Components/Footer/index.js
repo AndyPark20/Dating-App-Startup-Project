@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 //Import CSS
 import './Footer.css';
@@ -13,20 +13,24 @@ import { Context } from '../App';
 
 export const Footer = () => {
 
-  const footerContext = React.useContext(Context)
+  const footerContext = React.useContext(Context);
 
   //Generate random candidate when user clicks more to display per page
   const generateRandomCandidate = (e) => {
     footerContext.updateDisplaycount(e.target.value);
     footerContext.updatePageNumber(createRandomNumber);
     footerContext.updateBtnStatus(false);
-  }
+  };
 
   //Click thru page Number
   const flipPageNumber = () => {
     footerContext.updateBtnStatus(false);
     footerContext.updatePageNumber(footerContext.pageNumber + 1)
-  }
+  };
+
+  useEffect(() => {
+    console.log(footerContext.toggleFooter);
+  })
 
   //Function to toggle between Delete All button OR Display Candidates per page
   const toggleFooter = () => {
@@ -46,14 +50,14 @@ export const Footer = () => {
             <p onClick={() => flipPageNumber()}>next</p>
           </div>
         </div>
-      )
+      );
     }
     return (
       <div className="footer-row">
         <Button type="button" variant="danger">Danger</Button>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="footer-container">
