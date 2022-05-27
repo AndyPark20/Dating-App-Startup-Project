@@ -25,8 +25,6 @@ export const createRandomNumber = () => {
 //Generate random number for completion (in Months)
 export const createRandomMonth = () => {
     const randomMonth = Math.floor(Math.random() * 12);
-    if(randomMonth ===0){
-        return 'Completed';
-    }
+
     return randomMonth;
 };

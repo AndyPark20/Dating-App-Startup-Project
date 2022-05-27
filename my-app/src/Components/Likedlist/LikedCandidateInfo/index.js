@@ -65,6 +65,21 @@ export const LikedCandidateInfo = () => {
     return 'month'
   };
 
+  //Function to check if duration is 0
+  const checkProjDuration = (values)=>{
+    if(values.durationMonth===0){
+      return 'Ready';
+    };
+    return values.durationMonth;
+  };
+
+  //Function hide mos. if value is 0
+  const hideMos =(values)=>{
+    if (values.durationMonth === 0) {
+      return '';
+    };
+    return 'mos.';
+  };
 
   const renderLikedCandidates = () => {
 
@@ -83,7 +98,7 @@ export const LikedCandidateInfo = () => {
               <td>{values.phone}</td>
               <td>{values.email}</td>
               <td>{`It's like a ${values.bizModel.that} for ${values.bizModel.this}`}</td>
-              <td>{values.durationMonth} <span className={hideMonth(index)}>mos.</span></td>
+        <td>{checkProjDuration(values)} <span className={hideMonth(index)}>{hideMos(values)}</span></td>
               <td>${values.randomCost}million <span className="currency">USD</span></td>
             </tr>
           </tbody>
