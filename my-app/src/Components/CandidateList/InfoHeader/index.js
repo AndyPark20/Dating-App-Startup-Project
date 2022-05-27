@@ -15,8 +15,10 @@ export const InfoHeader = () => {
   const sortLikedData = (e) => {
     //get id from event for resuableability of this function
     const sortOption = e.target.id
+    console.log(e.target.id)
     if (e.target.className === 'fa fa-long-arrow-up customer-style') {
       const result = headerContext.likedList.sort((a, b) => {
+
         if (a[sortOption] > b[sortOption]) { return 1; };
         if (a[sortOption] < b[sortOption]) { return -1; };
         return 0;
@@ -24,7 +26,7 @@ export const InfoHeader = () => {
       //Control arrow direction depending on which information user wants to toggle
       if (sortOption === 'durationMonth') {
         headerContext.updateToggleDurationSort(true);
-      }else if (sortOption === 'projectCost'){
+      }else if (sortOption === 'randomCost'){
         headerContext.updateToggleCostSort(true);
       };
 
@@ -41,7 +43,7 @@ export const InfoHeader = () => {
       //Control arrow direction depending on which information user wants to toggle
       if (sortOption === 'durationMonth') {
         headerContext.updateToggleDurationSort(false);
-      } else if (sortOption === 'projectCost') {
+      } else if (sortOption === 'randomCost') {
         headerContext.updateToggleCostSort(false);
       }
       headerContext.updateLikedList(result);
@@ -63,7 +65,7 @@ export const InfoHeader = () => {
     if(!headerContext.toggleCostSort){
       return 'fa fa-long-arrow-up customer-style';
     };
-    return 'fa fa-long-arrow-up customer-style';
+    return 'fa fa-long-arrow-down customer-style';
   };
 
   return (
@@ -79,7 +81,7 @@ export const InfoHeader = () => {
              <i className={projectDuration()} aria-hidden="true" id="durationMonth" onClick={(e) => sortLikedData(e)}></i>
         </th>
         <th>Cost:
-            <i className={sortCost()} aria-hidden="true" id="durationMonth" onClick={(e) => sortLikedData(e)}></i>
+            <i className={sortCost()} aria-hidden="true" id="randomCost" onClick={(e) => sortLikedData(e)}></i>
         </th>
       </tr>
     </thead>

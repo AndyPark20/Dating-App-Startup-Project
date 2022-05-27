@@ -56,7 +56,7 @@ export const App = () => {
       projectDuration, updateProjectDuration, randomCost, updateRandomCost, displayCount, updateDisplaycount,
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
-      toggleDurationSort, updateToggleDurationSort
+      toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort
     }}>
       <div className="container">
         <div className="row">
