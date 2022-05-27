@@ -44,8 +44,10 @@ export const App = () => {
   const [bizIdeaList, updateBizIdeaList] = useState([]);
   //Toggle between display candidate per page and Delete all button (candidate list vs liked list)
   const [toggleFooter, updateToggleFooter] = useState(false);
-  //Toggle to re-render saved candidates if user sorts or refreshes page
+  //Toggle Sort even for refresh for Duration project information
   const [toggleDurationSort, updateToggleDurationSort] = useState(false);
+  //Toggle Sort even for refresh for Cost
+  const [toggleCostSort, updateToggleCostSort] = useState(false);
 
 
   return (
