@@ -11,11 +11,11 @@ export const InfoHeader = () => {
   const headerContext = React.useContext(Context)
 
 
-  //Function to sort by shortest and longest project completion
+  //Function to Sort project duration and time
   const sortLikedData = (e) => {
     //get id from event for resuableability of this function
     const sortOption = e.target.id
-    console.log(e.target.id)
+
     if (e.target.className === 'fa fa-long-arrow-up customer-style') {
       const result = headerContext.likedList.sort((a, b) => {
 
@@ -24,10 +24,13 @@ export const InfoHeader = () => {
         return 0;
       });
       //Control arrow direction depending on which information user wants to toggle
-      //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes
       if (sortOption === 'durationMonth') {
+        //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - duration
+        window.localStorage.setItem("monthArrowDirection", JSON.stringify(true));
         headerContext.updateToggleDurationSort(true);
-      }else if (sortOption === 'randomCost'){
+      } else if (sortOption === 'randomCost') {
+        //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - cost
+        window.localStorage.setItem("costArrowDirection", JSON.stringify(true));
         headerContext.updateToggleCostSort(true);
       };
 
@@ -36,15 +39,19 @@ export const InfoHeader = () => {
       return result;
     } else {
       const result = headerContext.likedList.sort((a, b) => {
-        if (a[sortOption] > b[sortOption]) {return -1;};
-        if (a[sortOption] < b[sortOption]) {return 1;};
+        if (a[sortOption] > b[sortOption]) { return -1; };
+        if (a[sortOption] < b[sortOption]) { return 1; };
         return 0;
       })
 
       //Control arrow direction depending on which information user wants to toggle
       if (sortOption === 'durationMonth') {
+        //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - duration
+        window.localStorage.setItem("monthArrayDirection", JSON.stringify(false));
         headerContext.updateToggleDurationSort(false);
       } else if (sortOption === 'randomCost') {
+        //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - cost
+        window.localStorage.setItem("costArrowDirection", JSON.stringify(false));
         headerContext.updateToggleCostSort(false);
       }
       headerContext.updateLikedList(result);
@@ -63,7 +70,7 @@ export const InfoHeader = () => {
 
   //Redmer arrow for Project Cost
   const sortCost = () => {
-    if(!headerContext.toggleCostSort){
+    if (!headerContext.toggleCostSort) {
       return 'fa fa-long-arrow-up customer-style';
     };
     return 'fa fa-long-arrow-down customer-style';
