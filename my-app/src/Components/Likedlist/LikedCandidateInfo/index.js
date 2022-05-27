@@ -12,13 +12,18 @@ export const LikedCandidateInfo = () => {
   //State to track length of liked List Array for useEffect Controll
   const [count, updateCount] = useState(likedContext.likedList.length);
 
+  // toggleSort, updateToggleSort
   useEffect(() => {
-
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
-    if (getLikedArray) {
+
+    if (getLikedArray && !likedContext.toggleSort) {
       likedContext.updateLikedList(getLikedArray)
+    }else{
+      likedContext.updateLikedList(likedContext.likedList)
+      window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
     }
   }, [count])
+
 
 
   //Function to delete delete card
@@ -33,13 +38,15 @@ export const LikedCandidateInfo = () => {
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
 
       //Change Undo button back to Like in the Candidates Component
-      likedContext.combinedObject.results.forEach((values, index) => {
-        if (values.phone === selectedPhoneNumber) {
-          likedContext.combinedObject.results[index].toggleButton = false;
-          const updatedToggleObj = { ...likedContext.combinedObject };
-          likedContext.updateCombinedObject({ ...likedContext.combinedObject });
-        };
-      })
+      if(likedContext.combinedObject.results){
+        likedContext.combinedObject.results.forEach((values, index) => {
+          if (values.phone === selectedPhoneNumber) {
+            likedContext.combinedObject.results[index].toggleButton = false;
+            const updatedToggleObj = { ...likedContext.combinedObject };
+            likedContext.updateCombinedObject({ ...likedContext.combinedObject });
+          };
+        })
+      };
     };
   };
 
@@ -47,17 +54,16 @@ export const LikedCandidateInfo = () => {
   const buttonStatus = (values) => {
     if (values.toggleButton) {
       return 'Reject'
-    }
-  }
+    };
+  };
 
   //Function to hide mos. if month is "completed" (zero)
   const hideMonth = (index) => {
-
     if (likedContext.likedList[index].durationMonth === 'Completed') {
       return 'hidden'
-    }
+    };
     return 'month'
-  }
+  };
 
 
   const renderLikedCandidates = () => {

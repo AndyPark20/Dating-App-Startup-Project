@@ -2,3 +2,7 @@
 .header-style{
   font-size:1rem;
 }
+
+.customer-style{
+  cursor: pointer;
+}

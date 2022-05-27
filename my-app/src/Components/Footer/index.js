@@ -52,6 +52,7 @@ export const Footer = () => {
             <p>Candidates per page</p>
           </div>
           <div className="col next-prev-view">
+
             <p onClick={() => flipPageNumber()}>next</p>
           </div>
         </div>
