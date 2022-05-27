@@ -49,6 +49,9 @@ export const App = () => {
   //Toggle Sort even for refresh for Cost
   const [toggleCostSort, updateToggleCostSort] = useState(false);
 
+  // useEffect(()=>{
+  //   console.log('toggleFooter', toggleFooter)
+  // })
 
   return (
     <Context.Provider value={{

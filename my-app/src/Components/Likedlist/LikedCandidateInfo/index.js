@@ -17,7 +17,25 @@ export const LikedCandidateInfo = () => {
     //When page refreshes
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
     if (getLikedArray && !likedContext.toggleDurationSort) {
-      likedContext.updateLikedList(getLikedArray)
+      //upate state if liked Candidate list data is available in localStorage;
+      likedContext.updateLikedList(getLikedArray);
+
+      //Get toggle sorting boolean value for both project duration and cost
+      const sortDurationBooleanValue = JSON.parse(window.localStorage.getItem("durationArrowDirection"));
+      const sortCostBooleanValue = JSON.parse(window.localStorage.getItem("costArrowDirection"));
+
+      // /*Get Boolean value to retrieve boolean value for rendering Reject All button in saved Candidate
+      // when user refreshes the page*/
+      const rejectAllBtnBooleanValue =window.localStorage.getItem("rejectAllBooleanValue");
+
+
+      //Update state if Boolean values for duration and cost is available
+      likedContext.updateToggleDurationSort(sortDurationBooleanValue);
+      likedContext.updateToggleCostSort(sortCostBooleanValue);
+
+      // //Upate state to render Reject All button in saved candidates when used refreshes page
+      console.log('liked', rejectAllBtnBooleanValue)
+      likedContext.updateToggleFooter(rejectAllBtnBooleanValue);
 
     //When user comes from other page section
     } else {

@@ -13,8 +13,12 @@ export const InfoHeader = () => {
 
   //Function to Sort project duration and time
   const sortLikedData = (e) => {
+
     //get id from event for resuableability of this function
     const sortOption = e.target.id
+
+    //Store boolean value to localstorage in order to render Reject All button if the user refreshes the page
+    window.localStorage.setItem("rejectAllBooleanValue", JSON.stringify(headerContext.toggleFooter));
 
     if (e.target.className === 'fa fa-long-arrow-up customer-style') {
       const result = headerContext.likedList.sort((a, b) => {
@@ -26,7 +30,7 @@ export const InfoHeader = () => {
       //Control arrow direction depending on which information user wants to toggle
       if (sortOption === 'durationMonth') {
         //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - duration
-        window.localStorage.setItem("monthArrowDirection", JSON.stringify(true));
+        window.localStorage.setItem("durationArrowDirection", JSON.stringify(true));
         headerContext.updateToggleDurationSort(true);
       } else if (sortOption === 'randomCost') {
         //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - cost
@@ -37,6 +41,7 @@ export const InfoHeader = () => {
       headerContext.updateLikedList(result);
       window.localStorage.setItem("likedArray", JSON.stringify(headerContext.likedList));
       return result;
+
     } else {
       const result = headerContext.likedList.sort((a, b) => {
         if (a[sortOption] > b[sortOption]) { return -1; };
@@ -47,7 +52,7 @@ export const InfoHeader = () => {
       //Control arrow direction depending on which information user wants to toggle
       if (sortOption === 'durationMonth') {
         //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - duration
-        window.localStorage.setItem("monthArrayDirection", JSON.stringify(false));
+        window.localStorage.setItem("durationArrowDirection", JSON.stringify(false));
         headerContext.updateToggleDurationSort(false);
       } else if (sortOption === 'randomCost') {
         //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes - cost
@@ -56,12 +61,14 @@ export const InfoHeader = () => {
       }
       headerContext.updateLikedList(result);
       window.localStorage.setItem("likedArray", JSON.stringify(headerContext.likedList));
+
       return result;
     }
   };
 
   //Render arrow for Project Duration
   const projectDuration = () => {
+
     if (!headerContext.toggleDurationSort) {
       return 'fa fa-long-arrow-up customer-style';
     };
