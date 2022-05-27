@@ -1,33 +1,62 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 
 //Import CSS
 import './InfoHeader.css';
 
 //Import Context
-import {Context} from '../../App';
+import { Context } from '../../App';
 
 export const InfoHeader = () => {
 
   const headerContext = React.useContext(Context)
 
   //Function to sort by shortest and longest project completion
-  const sortDuration =(e)=>{
-      if(e.target.className === 'fa fa-long-arrow-up customer-style'){
-        const result =headerContext.likedList.sort((a,b)=>{
-          if(a.durationMonth > b.durationMonth){
-            return 1;
-          };
-          if(a.durationMonth < b.durationMonth){
-            return -1;
-          };
-          return 0;
-        })
-        headerContext.updateToggleSort(true);
-        headerContext.updateLikedList(result)
-        window.localStorage.setItem("likedArray", JSON.stringify(headerContext.likedList));
-;
-        return result;
-      }
+  const sortDuration = (e) => {
+    //get id from event for resuableability of this function
+    const sortOption = e.target.id
+    if (e.target.className === 'fa fa-long-arrow-up customer-style') {
+      const result = headerContext.likedList.sort((a, b) => {
+        if (a[sortOption] > b[sortOption]) {
+          return 1;
+        };
+        if (a[sortOption] < b[sortOption]) {
+          return -1;
+        };
+        return 0;
+      })
+      headerContext.updateToggleDurationSort(true);
+      headerContext.updateLikedList(result)
+      window.localStorage.setItem("likedArray", JSON.stringify(headerContext.likedList));
+      return result;
+    } else {
+      console.log('hello')
+      const result = headerContext.likedList.sort((a, b) => {
+        if (a[sortOption] > b[sortOption]) {
+          return -1;
+        };
+        if (a[sortOption] < b[sortOption]) {
+          return 1;
+        };
+        return 0;
+      })
+      headerContext.updateToggleDurationSort(false);
+      headerContext.updateLikedList(result)
+      window.localStorage.setItem("likedArray", JSON.stringify(headerContext.likedList));
+      return result;
+    }
+  };
+
+  //Render arrow for Project Duration
+  const projectDuration = () => {
+    if (!headerContext.toggleDurationSort) {
+      return 'fa fa-long-arrow-up customer-style';
+    }
+    return 'fa fa-long-arrow-down customer-style';
+  }
+
+  //Redmer arrow for Project Cost
+  const sortCost=()=>{
+
   }
 
   return (
@@ -40,10 +69,11 @@ export const InfoHeader = () => {
         <th>Email:</th>
         <th>Business Idea:</th>
         <th>Project Duration:
-             <i className="fa fa-long-arrow-up customer-style" aria-hidden="true" onClick={(e)=>sortDuration(e)}></i>
+             <i className={projectDuration()} aria-hidden="true" id="durationMonth" onClick={(e) => sortDuration(e)}></i>
         </th>
-
-        <th>Cost</th>
+        <th>Cost:
+            <i className={sortCost()} aria-hidden="true" id="durationMonth" onClick={(e) => sortCost(e)}></i>
+        </th>
       </tr>
     </thead>
   );

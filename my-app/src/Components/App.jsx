@@ -45,7 +45,7 @@ export const App = () => {
   //Toggle between display candidate per page and Delete all button (candidate list vs liked list)
   const [toggleFooter, updateToggleFooter] = useState(false);
   //Toggle to re-render saved candidates if user sorts or refreshes page
-  const [toggleSort, updateToggleSort] = useState(false);
+  const [toggleDurationSort, updateToggleDurationSort] = useState(false);
 
 
   return (
@@ -54,7 +54,7 @@ export const App = () => {
       projectDuration, updateProjectDuration, randomCost, updateRandomCost, displayCount, updateDisplaycount,
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
-      toggleSort, updateToggleSort
+      toggleDurationSort, updateToggleDurationSort
     }}>
       <div className="container">
         <div className="row">

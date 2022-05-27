@@ -12,14 +12,15 @@ export const LikedCandidateInfo = () => {
   //State to track length of liked List Array for useEffect Controll
   const [count, updateCount] = useState(likedContext.likedList.length);
 
-  // toggleSort, updateToggleSort
-  useEffect(() => {
-    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
 
-    if (getLikedArray && !likedContext.toggleSort) {
+  useEffect(() => {
+    //When page refreshes
+    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
+    if (getLikedArray && !likedContext.toggleDurationSort) {
       likedContext.updateLikedList(getLikedArray)
-    }else{
-      console.log('hello')
+
+    //When user comes from other page section
+    } else {
       likedContext.updateLikedList(likedContext.likedList)
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
     }
@@ -39,7 +40,7 @@ export const LikedCandidateInfo = () => {
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
 
       //Change Undo button back to Like in the Candidates Component
-      if(likedContext.combinedObject.results){
+      if (likedContext.combinedObject.results) {
         likedContext.combinedObject.results.forEach((values, index) => {
           if (values.phone === selectedPhoneNumber) {
             likedContext.combinedObject.results[index].toggleButton = false;
@@ -67,15 +68,15 @@ export const LikedCandidateInfo = () => {
   };
 
   //Function to check if duration is 0
-  const checkProjDuration = (values)=>{
-    if(values.durationMonth===0){
+  const checkProjDuration = (values) => {
+    if (values.durationMonth === 0) {
       return 'Ready';
     };
     return values.durationMonth;
   };
 
   //Function hide mos. if value is 0
-  const hideMos =(values)=>{
+  const hideMos = (values) => {
     if (values.durationMonth === 0) {
       return '';
     };
@@ -83,7 +84,6 @@ export const LikedCandidateInfo = () => {
   };
 
   const renderLikedCandidates = () => {
-
     if (likedContext.likedList) {
       const likedCandidatesArray = likedContext.likedList.map((values, index) => {
         return (
@@ -99,7 +99,7 @@ export const LikedCandidateInfo = () => {
               <td>{values.phone}</td>
               <td>{values.email}</td>
               <td>{`It's like a ${values.bizModel.that} for ${values.bizModel.this}`}</td>
-        <td>{checkProjDuration(values)} <span className={hideMonth(index)}>{hideMos(values)}</span></td>
+              <td>{checkProjDuration(values)} <span className={hideMonth(index)}>{hideMos(values)}</span></td>
               <td>${values.randomCost}million <span className="currency">USD</span></td>
             </tr>
           </tbody>
