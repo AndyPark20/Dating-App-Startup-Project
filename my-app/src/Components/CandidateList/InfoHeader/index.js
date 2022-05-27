@@ -22,8 +22,10 @@ export const InfoHeader = () => {
           };
           return 0;
         })
-        headerContext.updateToggleSort(true)
-        headerContext.updateLikedList(result);
+        headerContext.updateToggleSort(true);
+        headerContext.updateLikedList(result)
+        window.localStorage.setItem("likedArray", JSON.stringify(headerContext.likedList));
+;
         return result;
       }
   }

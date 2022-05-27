@@ -19,6 +19,7 @@ export const LikedCandidateInfo = () => {
     if (getLikedArray && !likedContext.toggleSort) {
       likedContext.updateLikedList(getLikedArray)
     }else{
+      console.log('hello')
       likedContext.updateLikedList(likedContext.likedList)
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
     }
