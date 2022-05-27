@@ -24,6 +24,7 @@ export const InfoHeader = () => {
         return 0;
       });
       //Control arrow direction depending on which information user wants to toggle
+      //Save Boolean value into local storage so that the arrow is pointed correctly when user refreshes
       if (sortOption === 'durationMonth') {
         headerContext.updateToggleDurationSort(true);
       }else if (sortOption === 'randomCost'){
