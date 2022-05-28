@@ -61,6 +61,7 @@ export const Footer = () => {
     return (
       <div className="footer-row" onClick={() => wipeLikedCandidate()}>
         <Button type="button" variant="danger">Reject All</Button>
+        <Button type="button" variant="secondary">Reset Filter</Button>
       </div>
     );
   };
