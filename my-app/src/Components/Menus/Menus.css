@@ -2,3 +2,7 @@
 .menu-col{
   display:flex;
 }
+
+.hidden{
+  display:none;
+}

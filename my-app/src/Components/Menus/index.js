@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useState } from 'react';
 
 //Import CSS
 import './Menus.css'
@@ -12,15 +12,20 @@ export const Menus = ({ updateBtnStatus }) => {
 
   const menuContext = React.useContext(Context);
 
-  const renderCostLimit=()=>{
-    return(
+  //State to keep track if user clicked on cost limit
+  const [costLimitOn, updateCostLimitOn] = useState(false);
+
+  const renderCostLimit = () => {
+    return (
       <Fragment>
-      <label>Cost Limit:
+        <label>Cost Limit:
       <input type="number"></input>
-      </label>
+        </label>
       </Fragment>
     )
   }
+
+
 
   return (
     <div className="container">
@@ -29,8 +34,8 @@ export const Menus = ({ updateBtnStatus }) => {
           <Link to="/Home" ><h3 onClick={() => menuContext.updateToggleFooter(false)}>Home</h3></Link>
           <Link to="/Saved"><h4 onClick={() => menuContext.updateToggleFooter(true)}>Saved Candidates</h4></Link>
           <div className="filter-col">
-          <h6 onClick={()=>renderCostLimit()}>Filter Cost</h6>
-  <span>{renderCostLimit()}</span>
+            <h6 className={costLimitOn ? 'hidden' : ''} onClick={()=>updateCostLimitOn(true)}>Filter Cost</h6>
+            <span className={costLimitOn ? '' : 'hidden'}>{renderCostLimit()}</span>
           </div>
         </div>
       </div>
