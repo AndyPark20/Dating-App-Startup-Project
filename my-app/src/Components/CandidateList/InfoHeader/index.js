@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 
 //Import CSS
 import './InfoHeader.css';
@@ -84,21 +84,24 @@ export const InfoHeader = () => {
   };
 
   return (
-    <thead>
-      <tr className="header-style">
-        <th></th>
-        <th></th>
-        <th>Full Name:</th>
-        <th>Phone:</th>
-        <th>Email:</th>
-        <th>Business Idea:</th>
-        <th>Project Duration:
+    <Fragment>
+      <thead>
+        <tr className="header-style">
+          <th></th>
+          <th></th>
+          <th>Full Name:</th>
+          <th>Phone:</th>
+          <th>Email:</th>
+          <th>Business Idea:</th>
+          <th>Project Duration:
              <i className={projectDuration()} aria-hidden="true" id="durationMonth" onClick={(e) => sortLikedData(e)}></i>
-        </th>
-        <th>Cost:
+          </th>
+          <th>Cost:
             <i className={sortCost()} aria-hidden="true" id="randomCost" onClick={(e) => sortLikedData(e)}></i>
-        </th>
-      </tr>
-    </thead>
+          </th>
+        </tr>
+      </thead>
+    </Fragment>
+
   );
 };
