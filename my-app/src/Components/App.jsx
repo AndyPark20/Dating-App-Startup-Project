@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment, useEffect} from 'react';
 
 //Import CSS File
 import "./App.css";
@@ -49,9 +49,9 @@ export const App = () => {
   //Toggle Sort even for refresh for Cost
   const [toggleCostSort, updateToggleCostSort] = useState(false);
 
-  // useEffect(()=>{
-  //   console.log('toggleFooter', toggleFooter)
-  // })
+  useEffect(()=>{
+    console.log('toggleFooter', toggleFooter)
+  })
 
   return (
     <Context.Provider value={{

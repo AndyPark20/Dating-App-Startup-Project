@@ -15,6 +15,16 @@ export const Footer = () => {
 
   const footerContext = React.useContext(Context);
 
+
+  useEffect(()=>{
+      //  let getToggleFooter = JSON.parse(window.localStorage.getItem("toggleFooter"));
+       if (window.location.pathname === "/Saved") {
+         footerContext.updateToggleFooter(true);
+       } else if(window.location.pathname ==='Home') {
+         footerContext.updateToggleFooter(false);
+       }
+  })
+
   //Generate random candidate when user clicks more to display per page
   const generateRandomCandidate = (e) => {
     footerContext.updateDisplaycount(e.target.value);

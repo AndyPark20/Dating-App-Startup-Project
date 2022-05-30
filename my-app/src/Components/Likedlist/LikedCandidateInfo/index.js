@@ -62,7 +62,6 @@ export const LikedCandidateInfo = () => {
         likedContext.combinedObject.results.forEach((values, index) => {
           if (values.phone === selectedPhoneNumber) {
             likedContext.combinedObject.results[index].toggleButton = false;
-            const updatedToggleObj = { ...likedContext.combinedObject };
             likedContext.updateCombinedObject({ ...likedContext.combinedObject });
           };
         })
