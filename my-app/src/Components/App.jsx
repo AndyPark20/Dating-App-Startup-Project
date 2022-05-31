@@ -48,10 +48,9 @@ export const App = () => {
   const [toggleDurationSort, updateToggleDurationSort] = useState(false);
   //Toggle Sort even for refresh for Cost
   const [toggleCostSort, updateToggleCostSort] = useState(false);
+  //Record user cost project cost
+  const [userNumberInput, updateUserNumberInput] = useState(null);
 
-  useEffect(()=>{
-    console.log('toggleFooter', toggleFooter)
-  })
 
   return (
     <Context.Provider value={{
@@ -59,7 +58,7 @@ export const App = () => {
       projectDuration, updateProjectDuration, randomCost, updateRandomCost, displayCount, updateDisplaycount,
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
-      toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort
+      toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput
     }}>
       <div className="container">
         <div className="row">

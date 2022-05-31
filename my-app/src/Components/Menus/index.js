@@ -15,8 +15,30 @@ export const Menus = ({ updateBtnStatus }) => {
   //State to keep track if user clicked on cost limit
   const [costLimitOn, updateCostLimitOn] = useState(false);
 
+
+  //Prevent default
   const handleSubmit=(e)=>{
     e.preventDefault();
+  }
+
+  //Record user number's input
+  const userCostSearchInput =(e)=>{
+    menuContext.updateUserNumberInput(e.target.value);
+  }
+
+  //Retrieve likedArray list to populate project cost less than user input
+  const renderProjectCost =()=>{
+    // window.localStorage.setItem('costLimit', menu)
+    if(menuContext.userNumberInput){
+      const candidateLimitCost = menuContext.likedList.filter(values => values.randomCost <=parseInt(menuContext.userNumberInput))
+      // const candidatePassedCost= menuContext.likedList.map((values, index) => {
+      //   if (values.randomCost <= parseInt(menuContext.userNumberInput)) {
+      //     console.log(menuContext.likedList[index])
+      //     // menuContext.updateLikedList([menuContext.likedList[index]])
+      //   }
+      // })
+      menuContext.updateLikedList(candidateLimitCost)
+    }
   }
 
   const renderCostLimit = () => {
@@ -25,9 +47,9 @@ export const Menus = ({ updateBtnStatus }) => {
         <form onSubmit={(e)=>handleSubmit(e)}>
           <label>
             Cost Limit:
-            <input type="text"></input>
+            <input type="text" onChange={(e) => userCostSearchInput(e)}></input>
           </label>
-          <button type="click" onClick={(e)=>console.log(e.target.value)}>GO</button>
+          <button type="click" onClick={()=>renderProjectCost()}>GO</button>
         </form>
       </Fragment>
     );
