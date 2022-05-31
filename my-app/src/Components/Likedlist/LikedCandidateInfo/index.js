@@ -13,7 +13,7 @@ export const LikedCandidateInfo = () => {
   const [count, updateCount] = useState(likedContext.likedList.length);
 
 
-  useEffect(() => {
+  useEffect(() => {// window.localStorage.setItem('costLimit', menu)
     //When page refreshes
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
     if (getLikedArray && !likedContext.toggleDurationSort) {
@@ -34,7 +34,6 @@ export const LikedCandidateInfo = () => {
       likedContext.updateToggleCostSort(sortCostBooleanValue);
 
       // //Upate state to render Reject All button in saved candidates when used refreshes page
-      console.log('liked', rejectAllBtnBooleanValue)
       likedContext.updateToggleFooter(rejectAllBtnBooleanValue);
 
     //When user comes from other page section
@@ -54,8 +53,11 @@ export const LikedCandidateInfo = () => {
       likedContext.updateLikedList(likedContext.likedList);
       updateCount(likedContext.likedList.length);
 
-      //Update LocalStorage
-      window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
+      //Update LocalStorage if candidate with limit cost array is empty
+
+        window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
+
+
 
       //Change Undo button back to Like in the Candidates Component
       if (likedContext.combinedObject.results) {

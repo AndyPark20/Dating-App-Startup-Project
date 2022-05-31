@@ -16,13 +16,13 @@ export const Footer = () => {
   const footerContext = React.useContext(Context);
 
 
-  useEffect(()=>{
-      //  let getToggleFooter = JSON.parse(window.localStorage.getItem("toggleFooter"));
-       if (window.location.pathname === "/Saved") {
-         footerContext.updateToggleFooter(true);
-       } else if(window.location.pathname ==='Home') {
-         footerContext.updateToggleFooter(false);
-       }
+  useEffect(() => {
+    //  let getToggleFooter = JSON.parse(window.localStorage.getItem("toggleFooter"));
+    if (window.location.pathname === "/Saved") {
+      footerContext.updateToggleFooter(true);
+    } else if (window.location.pathname === 'Home') {
+      footerContext.updateToggleFooter(false);
+    }
   })
 
   //Generate random candidate when user clicks more to display per page
@@ -40,44 +40,55 @@ export const Footer = () => {
 
 
   //Function to delete all liked candidate and update local Storage
-  const wipeLikedCandidate =()=>{
+  const wipeLikedCandidate = () => {
     //Update Liked List Array
     footerContext.updateLikedList([]);
     //Update Localstorage
     window.localStorage.setItem("likedArray", JSON.stringify([]));
-  }
 
-  //Function to toggle between Delete All button OR Display Candidates per page
-  const toggleFooter = () => {
-    if (!footerContext.toggleFooter) {
-      return (
-        <div className="footer-row">
-          <div className="col page-per-view">
-            <p>Display</p>
-            <select onChange={(e) => generateRandomCandidate(e)}>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-            </select>
-            <p>Candidates per page</p>
-          </div>
-          <div className="col next-prev-view">
+    //Change Undo button back to Like in the Candidates Component
+    if (footerContext.combinedObject.results) {
+      footerContext.combinedObject.results.forEach((values, index) => {
 
-            <p onClick={() => flipPageNumber()}>next</p>
-          </div>
-        </div>
-      );
-    }
-    return (
-      <div className="footer-row" onClick={() => wipeLikedCandidate()}>
-        <Button type="button" variant="danger">Reject All</Button>
-      </div>
-    );
+          footerContext.combinedObject.results[index].toggleButton = false;
+          footerContext.updateCombinedObject({ ...footerContext.combinedObject });
+
+      })
+    };
   };
 
+
+//Function to toggle between Delete All button OR Display Candidates per page
+const toggleFooter = () => {
+  if (!footerContext.toggleFooter) {
+    return (
+      <div className="footer-row">
+        <div className="col page-per-view">
+          <p>Display</p>
+          <select onChange={(e) => generateRandomCandidate(e)}>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
+          <p>Candidates per page</p>
+        </div>
+        <div className="col next-prev-view">
+
+          <p onClick={() => flipPageNumber()}>next</p>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className="footer-container">
-      {toggleFooter()}
+    <div className="footer-row" onClick={() => wipeLikedCandidate()}>
+      <Button type="button" variant="danger">Reject All</Button>
     </div>
   );
+};
+
+return (
+  <div className="footer-container">
+    {toggleFooter()}
+  </div>
+);
 };

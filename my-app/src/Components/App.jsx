@@ -50,6 +50,8 @@ export const App = () => {
   const [toggleCostSort, updateToggleCostSort] = useState(false);
   //Record user cost project cost
   const [userNumberInput, updateUserNumberInput] = useState(null);
+  //Record state for candidates that pass limit cost
+  const [candidateLimitCost, updateCandidateLimitCost] = useState([]);
 
 
   return (
@@ -58,7 +60,8 @@ export const App = () => {
       projectDuration, updateProjectDuration, randomCost, updateRandomCost, displayCount, updateDisplaycount,
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
-      toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput
+      toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput,
+      candidateLimitCost, updateCandidateLimitCost
     }}>
       <div className="container">
         <div className="row">
