@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-
 import Button from 'react-bootstrap/Button';
-
 import { Context } from '../../App';
 import context from 'react-bootstrap/esm/AccordionContext';
 

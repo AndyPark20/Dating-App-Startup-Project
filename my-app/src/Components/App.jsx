@@ -8,6 +8,7 @@ import "./App.css";
 import { Menus } from './Menus';
 import { Footer } from './Footer';
 import { CandidateList } from './CandidateList';
+import {LoadingBar} from './Loading';
 
 // import { Footer } from './Footer';
 import { LikedList } from './LikedList/';
@@ -52,6 +53,8 @@ export const App = () => {
   const [userNumberInput, updateUserNumberInput] = useState(null);
   //Toggle boolean value when user clicks go in limit cost to re-render liked Candidate list
   const [renderLikedList, updateRenderLikedList] = useState(false);
+  //Boolean value to control loading spinner
+  const [spinner, updateSpinner] =useState(false);
 
 
   return (
@@ -61,9 +64,10 @@ export const App = () => {
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
       toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput,
-      renderLikedList, updateRenderLikedList
+      renderLikedList, updateRenderLikedList, spinner, updateSpinner
     }}>
       <div className="container">
+            <LoadingBar/>
         <div className="row">
           <div className="col main-section">
             <div className="vertical-menu">
