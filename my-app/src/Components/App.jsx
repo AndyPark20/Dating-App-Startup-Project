@@ -50,8 +50,8 @@ export const App = () => {
   const [toggleCostSort, updateToggleCostSort] = useState(false);
   //Record user cost project cost
   const [userNumberInput, updateUserNumberInput] = useState(null);
-  //Record state for candidates that pass limit cost
-  const [candidateLimitCost, updateCandidateLimitCost] = useState([]);
+  //Toggle boolean value when user clicks go in limit cost to re-render liked Candidate list
+  const [renderLikedList, updateRenderLikedList] = useState(false);
 
 
   return (
@@ -61,7 +61,7 @@ export const App = () => {
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
       toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput,
-      candidateLimitCost, updateCandidateLimitCost
+      renderLikedList, updateRenderLikedList
     }}>
       <div className="container">
         <div className="row">

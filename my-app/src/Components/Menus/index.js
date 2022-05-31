@@ -28,14 +28,31 @@ export const Menus = ({ updateBtnStatus }) => {
 
   //Retrieve likedArray list to populate project cost less than user input
   const renderProjectCost = (e) => {
+    console.log(e.target.id)
     if (menuContext.userNumberInput) {
-      if (e.target.textContent === 'GO') {
-        const candidateLimitCost = menuContext.likedList.filter(values => values.randomCost <= parseInt(menuContext.userNumberInput))
-        menuContext.updateLikedList(candidateLimitCost)
-      } else {
+      if (e.target.id === 'one') {
+       menuContext.likedList.forEach(values => {
+          if(!(values.randomCost <= parseInt(menuContext.userNumberInput))){
+            values.maxLimitHide = true;
+
+          };
+        })
+        menuContext.updateLikedList(menuContext.likedList);
+        menuContext.updateRenderLikedList(true);
+        // menuContext.updateRenderLikedList(false);
+
+
+      }
+      if(e.target.id ==='two') {
         //If user wants to see original saved candidate
         const retrieveOriginalLikedArray = JSON.parse(window.localStorage.getItem('likedArray'));
+        console.log('RESET',retrieveOriginalLikedArray)
+        retrieveOriginalLikedArray.forEach(values=>{
+          values.maxLimitHide = false;
+        })
         menuContext.updateLikedList(retrieveOriginalLikedArray)
+       menuContext.updateRenderLikedList(true);
+
       }
     }
   }
@@ -48,8 +65,8 @@ export const Menus = ({ updateBtnStatus }) => {
             Cost Limit:
             <input type="text" onChange={(e) => userCostSearchInput(e)}></input>
           </label>
-          <button type="click" onClick={(e) => renderProjectCost(e)}>GO</button>
-          <button type="click" onClick={(e) => renderProjectCost(e)}>RESET</button>
+          <button id="one" type="click" onClick={(e) => renderProjectCost(e)}>GO</button>
+          <button id="two" type="click" onClick={(e) => renderProjectCost(e)}>RESET</button>
         </form>
       </Fragment>
     );
@@ -67,6 +84,14 @@ export const Menus = ({ updateBtnStatus }) => {
 
   }
 
+  //function to hide filter cost functionality in home section
+  const renderFilterCost = () => {
+    if (window.location.pathname === '/Saved') {
+        return 'filter-col';
+    };
+      return 'hidden';
+  };
+
 
   return (
     <div className="container">
@@ -74,9 +99,9 @@ export const Menus = ({ updateBtnStatus }) => {
         <div className="menu-col">
           <Link to="/Home" ><h3 id="home" onClick={(e) => toggleFooter(e)}>Home</h3></Link>
           <Link to="/Saved"><h4 id="saved" onClick={(e) => toggleFooter(e)}>Saved Candidates</h4></Link>
-          <div className="filter-col">
-            <h6 className={costLimitOn ? 'hidden' : ''} onClick={() => updateCostLimitOn(true)}>Filter Cost</h6>
-            <span className={costLimitOn ? '' : 'hidden'}>{renderCostLimit()}</span>
+          <div className={renderFilterCost()}>
+            <h6 onClick={() => updateCostLimitOn(true)}>Filter Cost</h6>
+            <span>{renderCostLimit()}</span>
           </div>
         </div>
       </div>

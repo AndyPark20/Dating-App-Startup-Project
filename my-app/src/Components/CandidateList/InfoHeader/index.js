@@ -68,19 +68,22 @@ export const InfoHeader = () => {
 
   //Render arrow for Project Duration
   const projectDuration = () => {
-
-    if (!headerContext.toggleDurationSort) {
-      return 'fa fa-long-arrow-up customer-style';
+    if (window.location.pathname === '/Saved') {
+      if (!headerContext.toggleDurationSort) {
+        return 'fa fa-long-arrow-up customer-style';
+      };
+      return 'fa fa-long-arrow-down customer-style';
     };
-    return 'fa fa-long-arrow-down customer-style';
   };
 
   //Redmer arrow for Project Cost
   const sortCost = () => {
-    if (!headerContext.toggleCostSort) {
-      return 'fa fa-long-arrow-up customer-style';
+    if (window.location.pathname === '/Saved') {
+      if (!headerContext.toggleCostSort) {
+        return 'fa fa-long-arrow-up customer-style';
+      };
+      return 'fa fa-long-arrow-down customer-style';
     };
-    return 'fa fa-long-arrow-down customer-style';
   };
 
   return (

@@ -32,7 +32,9 @@ export const RenderCandidate = () => {
           values['bizModel'] = candidateInfoContext.randomBizApi[index],
           values['randomCost'] = candidateInfoContext.randomCost[index],
           //value to toggle between save or remove button text
-          values['toggleButton'] = false
+          values['toggleButton'] = false,
+          //Boolean value to toggle between maxlimit cost candidates and reset candidates
+          values['maxLimitHide'] = false
         );
       });
       candidateInfoContext.updateCombinedObject(candidateInfoContext.candidateApi);

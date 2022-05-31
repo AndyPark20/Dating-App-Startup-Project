@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 
 import { Context } from '../../App';
+import context from 'react-bootstrap/esm/AccordionContext';
 
 
 export const LikedCandidateInfo = () => {
@@ -13,10 +14,13 @@ export const LikedCandidateInfo = () => {
   const [count, updateCount] = useState(likedContext.likedList.length);
 
 
-  useEffect(() => {// window.localStorage.setItem('costLimit', menu)
+  useEffect(() => {
+
     //When page refreshes
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
     if (getLikedArray && !likedContext.toggleDurationSort) {
+
+        console.log('hello', getLikedArray)
       //upate state if liked Candidate list data is available in localStorage;
       likedContext.updateLikedList(getLikedArray);
 
@@ -38,12 +42,23 @@ export const LikedCandidateInfo = () => {
 
     //When user comes from other page section
     } else {
+      console.log('helloTWO')
       likedContext.updateLikedList(likedContext.likedList)
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
     }
   }, [count])
 
+  useEffect(()=>{
+    likedContext.updateRenderLikedList(false);
+  }, [likedContext.renderLikedList])
 
+  useEffect(()=>{
+    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
+    getLikedArray.forEach(values => {
+      values.maxLimitHide = false;
+    })
+    likedContext.updateLikedList(getLikedArray);
+  },[])
 
   //Function to delete delete card
   const deleteCard = (e, index) => {
@@ -54,8 +69,7 @@ export const LikedCandidateInfo = () => {
       updateCount(likedContext.likedList.length);
 
       //Update LocalStorage if candidate with limit cost array is empty
-
-        window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
+      window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
 
 
 
@@ -105,24 +119,26 @@ export const LikedCandidateInfo = () => {
   const renderLikedCandidates = () => {
     if (likedContext.likedList) {
       const likedCandidatesArray = likedContext.likedList.map((values, index) => {
-        return (
-          <tbody>
-            <tr className="name-tr-table">
-              <td>
-                <Button variant="primary" id={values.phone} onClick={(e) => deleteCard(e, index)}>{buttonStatus(values)}</Button>
-              </td>
-              <td>
-                <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
-              </td>
-              <td>{`${values.name.first} ${values.name.last}`}</td>
-              <td>{values.phone}</td>
-              <td>{values.email}</td>
-              <td>{`It's like a ${values.bizModel.that} for ${values.bizModel.this}`}</td>
-              <td>{checkProjDuration(values)} <span className={hideMonth(index)}>{hideMos(values)}</span></td>
-              <td>${values.randomCost}million <span className="currency">USD</span></td>
-            </tr>
-          </tbody>
-        );
+        if(!values.maxLimitHide){
+          return (
+            <tbody>
+              <tr className="name-tr-table">
+                <td>
+                  <Button variant="primary" id={values.phone} onClick={(e) => deleteCard(e, index)}>{buttonStatus(values)}</Button>
+                </td>
+                <td>
+                  <img className="candidate-picture" src={values.picture.large} alt={`${values.name.first} ${values.name.last}`} />
+                </td>
+                <td>{`${values.name.first} ${values.name.last}`}</td>
+                <td>{values.phone}</td>
+                <td>{values.email}</td>
+                <td>{`It's like a ${values.bizModel.that} for ${values.bizModel.this}`}</td>
+                <td>{checkProjDuration(values)} <span className={hideMonth(index)}>{hideMos(values)}</span></td>
+                <td>${values.randomCost}million <span className="currency">USD</span></td>
+              </tr>
+            </tbody>
+          );
+        }
       })
       return likedCandidatesArray;
     };
