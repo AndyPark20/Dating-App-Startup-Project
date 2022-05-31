@@ -19,6 +19,7 @@ export const RenderCandidate = () => {
   const candidateInfoContext = React.useContext(Context);
 
   useEffect(() => {
+
     if (candidateInfoContext.likedList) {
       //set LocalStorage
       window.localStorage.setItem("likedArray", JSON.stringify(candidateInfoContext.likedList));

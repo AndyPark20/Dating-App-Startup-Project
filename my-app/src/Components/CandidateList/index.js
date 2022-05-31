@@ -17,6 +17,10 @@ export const CandidateList = () => {
   const candidateListContext = React.useContext(Context);
 
   useEffect(() => {
+
+    //render loading spinner
+    candidateListContext.updateSpinner(true);
+
     const getRandomUserApi = async () => {
       try {
         //Clear project duration array everytime api is fetched.
@@ -47,6 +51,9 @@ export const CandidateList = () => {
           //Make a deep copy of the api result object before updating the state
           let deepCopyApiResult = JSON.parse(JSON.stringify(candidateApiResult));
           candidateListContext.updateCandidateApi(deepCopyApiResult);
+
+          //When Loading is finished disable loading spinner
+          candidateListContext.updateSpinner(false);
         };
       } catch (err) {
         console.error(err);

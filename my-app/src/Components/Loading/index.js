@@ -8,8 +8,9 @@ import { Context } from '../App';
 export const LoadingBar =()=>{
 
   const loading = React.useContext(Context)
-
   return(
-    <div class={loading.spinner ? "lds-hourglass" : 'hidden'}></div>
+    <div className={loading.spinner ? 'spinner-container' : 'hidden'}>
+    <div class={loading.spinner ? 'lds-facebook' : 'hidden'}><div></div><div></div><div></div></div>
+    </div>
   )
 }
