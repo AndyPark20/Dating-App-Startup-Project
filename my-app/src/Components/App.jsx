@@ -60,6 +60,8 @@ export const App = () => {
   const [renderModal, updateRenderModal] = useState(false);
   //Boolean value to confirm liked Candidate Reject
   const [confirmReject, updateConfirmReject] = useState(false);
+  //State to record Rejected Candidates informationforModal;
+  const [rejectedCandidate, updateRejectedCandidate] = useState({});
 
 
   return (
@@ -69,7 +71,8 @@ export const App = () => {
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
       toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput,
-      renderLikedList, updateRenderLikedList, spinner, updateSpinner, renderModal, updateRenderModal, confirmReject, updateConfirmReject
+      renderLikedList, updateRenderLikedList, spinner, updateSpinner, renderModal, updateRenderModal, confirmReject, updateConfirmReject,
+      rejectedCandidate, updateRejectedCandidate
     }}>
       <div className="container">
             <ConfirmationModal />

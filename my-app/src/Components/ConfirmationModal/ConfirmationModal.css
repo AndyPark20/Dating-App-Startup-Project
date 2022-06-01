@@ -12,3 +12,16 @@
 .hidden{
   display:none;
 }
+
+.candidate-info{
+  font-weight:bold;
+}
+
+.modal-message{
+  font-size:1.4rem;
+}
+
+.modal-row{
+  margin-top:20%;
+  text-align:center;
+}

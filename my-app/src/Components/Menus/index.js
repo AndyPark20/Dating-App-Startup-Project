@@ -15,16 +15,15 @@ export const Menus = ({ updateBtnStatus }) => {
   //State to keep track if user clicked on cost limit
   const [costLimitOn, updateCostLimitOn] = useState(false);
 
-
   //Prevent default
   const handleSubmit = (e) => {
     e.preventDefault();
-  }
+  };
 
   //Record user number's input
   const userCostSearchInput = (e) => {
     menuContext.updateUserNumberInput(e.target.value);
-  }
+  };
 
   //Retrieve likedArray list to populate project cost less than user input
   const renderProjectCost = (e) => {
@@ -37,7 +36,7 @@ export const Menus = ({ updateBtnStatus }) => {
         })
         menuContext.updateLikedList(menuContext.likedList);
         menuContext.updateRenderLikedList(true);
-      }
+      };
 
       if(e.target.id ==='reset') {
         //If user wants to see original saved candidate
@@ -47,10 +46,10 @@ export const Menus = ({ updateBtnStatus }) => {
         })
         menuContext.updateLikedList(retrieveOriginalLikedArray)
        menuContext.updateRenderLikedList(true);
-
-      }
-    }
-  }
+        menuContext.updateUserNumberInput(null);
+      };
+    };
+  };
 
   const renderCostLimit = () => {
     return (

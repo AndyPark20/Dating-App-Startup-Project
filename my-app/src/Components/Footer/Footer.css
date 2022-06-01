@@ -27,3 +27,7 @@ select{
   width:50px;
   height:25px;
 }
+
+.hidden{
+  display:none;
+}

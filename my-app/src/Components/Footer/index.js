@@ -41,10 +41,21 @@ export const Footer = () => {
 
   //Function to delete all liked candidate and update local Storage
   const wipeLikedCandidate = () => {
-    //Update Liked List Array
-    footerContext.updateLikedList([]);
-    //Update Localstorage
-    window.localStorage.setItem("likedArray", JSON.stringify([]));
+
+    //If liked Candidate list is not sorted by cost limit then wipe all
+    if(!footerContext.userNumberInput){
+      //Update Liked List Array
+      footerContext.updateLikedList([]);
+      //Update Localstorage
+      window.localStorage.setItem("likedArray", JSON.stringify([]));
+
+    //If liked Candidate list is limited by cost selection wipe all only those candidates that meet the cost limit
+    }else{
+      const filteredCandidates = menuContext.likedList.filter(values => { if (values.randomCost <= parseInt(menuContext.userNumberInput))})
+
+      console.log('filteredCandidates', filteredCandidates)
+    }
+
 
     //Change Undo button back to Like in the Candidates Component
     if (footerContext.combinedObject.results) {

@@ -24,6 +24,7 @@ export const LikedCandidateInfo = () => {
   const [phoneNumber, updatePhoneNumber]= useState('');
 
 
+  //Render when the likedArray list gets longer
   useEffect(() => {
     //When page refreshes
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
@@ -98,8 +99,8 @@ export const LikedCandidateInfo = () => {
 
   //Function to delete delete card
   const deleteCard = (e, index) => {
-    if (e.target.textContent === 'Reject') {
 
+    if (e.target.textContent === 'Reject') {
       const selectedPhoneNumber = e.target.id;
       updatePhoneNumber(selectedPhoneNumber);
 
@@ -110,6 +111,8 @@ export const LikedCandidateInfo = () => {
       updateE(e);
       updateSavedIndex(index);
 
+      //Update Rejected Candidate information to appear on modal
+      likedContext.updateRejectedCandidate(likedContext.likedList[index])
     };
   };
 
