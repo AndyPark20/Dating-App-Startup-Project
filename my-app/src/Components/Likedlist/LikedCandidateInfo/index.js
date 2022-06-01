@@ -59,7 +59,6 @@ export const LikedCandidateInfo = () => {
 
   //Re-render if user clicks CONFIRM in modal to reject candidate
   useEffect(() => {
-
     if (likedContext.confirmReject) {
       likedContext.likedList.splice(savedIndex, 1);
       likedContext.updateLikedList(likedContext.likedList);
@@ -106,7 +105,7 @@ export const LikedCandidateInfo = () => {
 
       //Render Confirmation Modal for user to verify their action
       likedContext.updateRenderModal(true);
-
+      likedContext.updateRejectLocation('individual');
 
       //save user clicked event and index of the card
       updateE(e);
@@ -153,7 +152,7 @@ export const LikedCandidateInfo = () => {
       const likedCandidatesArray = likedContext.likedList.map((values, index) => {
         if (!values.maxLimitHide) {
           return (
-            <tbody>
+            <tbody key={index}>
               <tr className="name-tr-table">
                 <td>
                   <Button variant="primary" id={values.phone} onClick={(e) => deleteCard(e, index)}>{buttonStatus(values)}</Button>

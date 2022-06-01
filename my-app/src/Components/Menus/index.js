@@ -70,10 +70,12 @@ export const Menus = ({ updateBtnStatus }) => {
   const toggleFooter = (e) => {
     if (e.target.id === 'home') {
       menuContext.updateToggleFooter(false)
-      window.localStorage.setItem('toggleFooter', JSON.stringify(false))
+      window.localStorage.setItem('toggleFooter', JSON.stringify(false));
+      updateCostLimitOn(false);
     } else {
       menuContext.updateToggleFooter(false);
       window.localStorage.setItem("toggleFooter", JSON.stringify(true));
+      updateCostLimitOn(true);
     };
   };
 
@@ -85,26 +87,15 @@ export const Menus = ({ updateBtnStatus }) => {
       return 'hidden';
   };
 
-  //Function to toggle cost limit search
-  const toggleCostLimitSearch=()=>{
-    if(costLimitOn){
-      updateCostLimitOn(false);
-    }else{
-      updateCostLimitOn(true);
-    }
-
-  }
-
 
   return (
-    <div className="container">
+    <div className="menu-container">
       <div className="row">
         <div className="menu-col">
           <Link to="/Home" ><h4 id="home" onClick={(e) => toggleFooter(e)}>Home</h4></Link>
-          <Link to="/Saved"><h4 id="saved" onClick={(e) => toggleFooter(e)}>Saved Candidates</h4></Link>
+          <Link to="/Saved" className="middle-link"><h4 id="saved" onClick={(e) => toggleFooter(e)}>Saved Candidates</h4></Link>
           <div className={renderFilterCost()}>
-            <h4 onClick={() => toggleCostLimitSearch()}>Filter Cost</h4>
-            <span className={costLimitOn ? '' : 'hidden'}>{renderCostLimit()}</span>
+            <span>{renderCostLimit()}</span>
           </div>
         </div>
       </div>

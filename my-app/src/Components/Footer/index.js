@@ -41,7 +41,6 @@ export const Footer = () => {
 
   //Function to delete all liked candidate and update local Storage
   const wipeLikedCandidate = () => {
-
     //If liked Candidate list is not sorted by cost limit then wipe all
     if(!footerContext.userNumberInput){
       //Update Liked List Array

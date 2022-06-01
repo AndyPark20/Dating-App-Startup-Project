@@ -1,6 +1,17 @@
 
+.menu-container{
+  width:100%;
+}
+
 .menu-col{
   display:flex;
+  margin-top:2%;
+  padding-right:5%;
+  width:80%
+}
+
+.middle-link{
+  padding:0% 2%
 }
 
 .hidden{

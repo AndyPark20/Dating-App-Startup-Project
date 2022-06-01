@@ -10,7 +10,7 @@ export const LoadingBar =()=>{
   const loading = React.useContext(Context)
   return(
     <div className={loading.spinner ? 'spinner-container' : 'hidden'}>
-    <div class={loading.spinner ? 'lds-facebook' : 'hidden'}><div></div><div></div><div></div></div>
+    <div className={loading.spinner ? 'lds-facebook' : 'hidden'}><div></div><div></div><div></div></div>
     </div>
   )
 }

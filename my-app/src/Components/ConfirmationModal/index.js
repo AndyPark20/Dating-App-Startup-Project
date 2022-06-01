@@ -12,7 +12,7 @@ export const ConfirmationModal = () => {
 
   //Modal button functionality
   const modalBtnFunction = (e) => {
-    if (e.target.textContent === 'Confirm') {
+    if (e.target.textContent === 'Confirm' && modal.rejectLocation ==='individual') {
       modal.updateConfirmReject(true);
       modal.updateRenderModal(false);
     } else {

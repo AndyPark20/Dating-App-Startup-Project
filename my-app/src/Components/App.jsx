@@ -62,6 +62,9 @@ export const App = () => {
   const [confirmReject, updateConfirmReject] = useState(false);
   //State to record Rejected Candidates informationforModal;
   const [rejectedCandidate, updateRejectedCandidate] = useState({});
+  //State to record Where Reject button should work (either individual, reject all, or limit cost all)
+  const [rejectLocation, updateRejectLocation] = useState('');
+
 
 
   return (
@@ -72,7 +75,7 @@ export const App = () => {
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
       toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput,
       renderLikedList, updateRenderLikedList, spinner, updateSpinner, renderModal, updateRenderModal, confirmReject, updateConfirmReject,
-      rejectedCandidate, updateRejectedCandidate
+      rejectedCandidate, updateRejectedCandidate, rejectLocation, updateRejectLocation
     }}>
       <div className="container">
             <ConfirmationModal />
