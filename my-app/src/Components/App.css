@@ -22,10 +22,3 @@ body{
   align-items:flex-start;
   margin:0% 5%;
 }
-
-
-.vertical-menu{
-  background:#20242c;
-  height:100vh;
-  width:20%;
-}

@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
+
 import Button from 'react-bootstrap/Button';
+
+//confirmation modal
+import { ConfirmationModal } from '../../ConfirmationModal';
+
 import { Context } from '../../App';
+
 import context from 'react-bootstrap/esm/AccordionContext';
 
 
@@ -10,15 +16,19 @@ export const LikedCandidateInfo = () => {
 
   //State to track length of liked List Array for useEffect Controll
   const [count, updateCount] = useState(likedContext.likedList.length);
+  //State to save user clicked event (e)
+  const [savedE, updateE] = useState(null);
+  //state to save user clicked index for delete candidate
+  const [savedIndex, updateSavedIndex] = useState(null);
+  //State to save candidate phone number
+  const [phoneNumber, updatePhoneNumber]= useState('');
 
 
   useEffect(() => {
-
     //When page refreshes
     let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
     if (getLikedArray && !likedContext.toggleDurationSort) {
 
-        console.log('hello', getLikedArray)
       //upate state if liked Candidate list data is available in localStorage;
       likedContext.updateLikedList(getLikedArray);
 
@@ -28,7 +38,7 @@ export const LikedCandidateInfo = () => {
 
       // /*Get Boolean value to retrieve boolean value for rendering Reject All button in saved Candidate
       // when user refreshes the page*/
-      const rejectAllBtnBooleanValue =window.localStorage.getItem("rejectAllBooleanValue");
+      const rejectAllBtnBooleanValue = window.localStorage.getItem("rejectAllBooleanValue");
 
 
       //Update state if Boolean values for duration and cost is available
@@ -38,48 +48,68 @@ export const LikedCandidateInfo = () => {
       // //Upate state to render Reject All button in saved candidates when used refreshes page
       likedContext.updateToggleFooter(rejectAllBtnBooleanValue);
 
-    //When user comes from other page section
+      //When user comes from other page section
     } else {
-      console.log('helloTWO')
       likedContext.updateLikedList(likedContext.likedList)
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
     }
   }, [count])
 
-  useEffect(()=>{
-    likedContext.updateRenderLikedList(false);
-  }, [likedContext.renderLikedList])
 
-  useEffect(()=>{
-    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
-    getLikedArray.forEach(values => {
-      values.maxLimitHide = false;
-    })
-    likedContext.updateLikedList(getLikedArray);
-  },[])
+  //Re-render if user clicks CONFIRM in modal to reject candidate
+  useEffect(() => {
 
-  //Function to delete delete card
-  const deleteCard = (e, index) => {
-    const selectedPhoneNumber = e.target.id;
-    if (e.target.textContent === 'Reject') {
-      likedContext.likedList.splice(index, 1);
+    if (likedContext.confirmReject) {
+      likedContext.likedList.splice(savedIndex, 1);
       likedContext.updateLikedList(likedContext.likedList);
       updateCount(likedContext.likedList.length);
 
       //Update LocalStorage if candidate with limit cost array is empty
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
 
-
+      //Toggle back to false for Confirm reject to work on other candidates
+      likedContext.updateConfirmReject(false);
 
       //Change Undo button back to Like in the Candidates Component
       if (likedContext.combinedObject.results) {
         likedContext.combinedObject.results.forEach((values, index) => {
-          if (values.phone === selectedPhoneNumber) {
+          if (values.phone === phoneNumber) {
             likedContext.combinedObject.results[index].toggleButton = false;
             likedContext.updateCombinedObject({ ...likedContext.combinedObject });
           };
         })
       };
+    };
+  },[likedContext.confirmReject])
+
+
+  useEffect(() => {
+    likedContext.updateRenderLikedList(false);
+  }, [likedContext.renderLikedList])
+
+  //Render Only one time when the page loads so all the candidate are shown when loaded.
+  useEffect(() => {
+    let getLikedArray = JSON.parse(window.localStorage.getItem("likedArray"));
+    getLikedArray.forEach(values => {
+      values.maxLimitHide = false;
+    })
+    likedContext.updateLikedList(getLikedArray);
+  }, [])
+
+  //Function to delete delete card
+  const deleteCard = (e, index) => {
+    if (e.target.textContent === 'Reject') {
+
+      const selectedPhoneNumber = e.target.id;
+      updatePhoneNumber(selectedPhoneNumber);
+
+      //Render Confirmation Modal for user to verify their action
+      likedContext.updateRenderModal(true);
+
+      //save user clicked event and index of the card
+      updateE(e);
+      updateSavedIndex(index);
+
     };
   };
 
@@ -117,7 +147,7 @@ export const LikedCandidateInfo = () => {
   const renderLikedCandidates = () => {
     if (likedContext.likedList) {
       const likedCandidatesArray = likedContext.likedList.map((values, index) => {
-        if(!values.maxLimitHide){
+        if (!values.maxLimitHide) {
           return (
             <tbody>
               <tr className="name-tr-table">

@@ -9,6 +9,7 @@ import { Menus } from './Menus';
 import { Footer } from './Footer';
 import { CandidateList } from './CandidateList';
 import {LoadingBar} from './Loading';
+import {ConfirmationModal} from '../Components/ConfirmationModal';
 
 // import { Footer } from './Footer';
 import { LikedList } from './LikedList/';
@@ -55,6 +56,10 @@ export const App = () => {
   const [renderLikedList, updateRenderLikedList] = useState(false);
   //Boolean value to control loading spinner
   const [spinner, updateSpinner] =useState(false);
+  //Boolean value to control confirmation modal
+  const [renderModal, updateRenderModal] = useState(false);
+  //Boolean value to confirm liked Candidate Reject
+  const [confirmReject, updateConfirmReject] = useState(false);
 
 
   return (
@@ -64,14 +69,13 @@ export const App = () => {
       updateBtnStatus, btnStatus, updateLikedList, likedList, updateCombinedObject, combinedObject,
       updateBizIdeaList, bizIdeaList, pageNumber, updatePageNumber, toggleFooter, updateToggleFooter,
       toggleDurationSort, updateToggleDurationSort, toggleCostSort, updateToggleCostSort, userNumberInput, updateUserNumberInput,
-      renderLikedList, updateRenderLikedList, spinner, updateSpinner
+      renderLikedList, updateRenderLikedList, spinner, updateSpinner, renderModal, updateRenderModal, confirmReject, updateConfirmReject
     }}>
       <div className="container">
+            <ConfirmationModal />
             <LoadingBar/>
         <div className="row">
           <div className="col main-section">
-            <div className="vertical-menu">
-            </div>
             <div className="main-section-footer-style">
               <BrowserRouter>
                 <Menus />

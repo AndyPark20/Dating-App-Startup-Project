@@ -1,0 +1,14 @@
+.confirmation-modal{
+  width:83%;
+  height:80vh;
+  border:1px solid grey;
+  position:fixed;
+  top:10%;
+  left:9%;
+  z-index:4;
+  background:lightgrey;
+}
+
+.hidden{
+  display:none;
+}
