@@ -85,7 +85,7 @@ const toggleFooter = () => {
         </div>
         <div className="col next-prev-view">
 
-          <p onClick={() => flipPageNumber()}>next</p>
+          <p onClick={() => flipPageNumber()} className="next-button">NEXT</p>
         </div>
       </div>
     );

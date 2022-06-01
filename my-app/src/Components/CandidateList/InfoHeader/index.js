@@ -96,7 +96,7 @@ export const InfoHeader = () => {
           <th>Phone:</th>
           <th>Email:</th>
           <th>Business Idea:</th>
-          <th>Project Duration:
+          <th>Duration:
              <i className={projectDuration()} aria-hidden="true" id="durationMonth" onClick={(e) => sortLikedData(e)}></i>
           </th>
           <th>Cost:

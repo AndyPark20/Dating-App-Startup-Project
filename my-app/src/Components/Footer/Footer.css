@@ -5,6 +5,7 @@ width:100%;
 }
 
 .footer-row{
+  margin-top:1%;
   display:flex;
 }
 
@@ -18,7 +19,6 @@ width:100%;
 
 .page-per-view{
   display:flex;
-  align-items: center;
   width:50%;
 }
 
@@ -30,4 +30,8 @@ select{
 
 .hidden{
   display:none;
+}
+
+.next-button{
+  font-weight:bold;
 }

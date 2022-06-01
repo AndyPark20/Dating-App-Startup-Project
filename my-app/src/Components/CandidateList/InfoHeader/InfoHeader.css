@@ -6,3 +6,8 @@
 .customer-style{
   cursor: pointer;
 }
+
+th{
+  font-size:.9rem;
+  text-align:center;
+}
