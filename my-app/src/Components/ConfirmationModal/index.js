@@ -9,9 +9,6 @@ export const ConfirmationModal = () => {
   const modal = React.useContext(Context);
 
 
-  useEffect(() => {
-    console.log(modal.rejectedCandidate.name)
-  })
 
   //Modal button functionality
   const modalBtnFunction = (e) => {
@@ -26,7 +23,6 @@ export const ConfirmationModal = () => {
   //Render selected candidate information to reject
   const renderCandidate = () => {
     if (modal.rejectedCandidate.name) {
-
       //Destructure name object
       const { title, first, last } = modal.rejectedCandidate.name
       return (

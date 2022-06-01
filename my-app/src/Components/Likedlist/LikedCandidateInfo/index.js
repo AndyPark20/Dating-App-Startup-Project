@@ -107,6 +107,7 @@ export const LikedCandidateInfo = () => {
       //Render Confirmation Modal for user to verify their action
       likedContext.updateRenderModal(true);
 
+
       //save user clicked event and index of the card
       updateE(e);
       updateSavedIndex(index);

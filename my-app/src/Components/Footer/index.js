@@ -51,9 +51,10 @@ export const Footer = () => {
 
     //If liked Candidate list is limited by cost selection wipe all only those candidates that meet the cost limit
     }else{
-      const filteredCandidates = menuContext.likedList.filter(values => { if (values.randomCost <= parseInt(menuContext.userNumberInput))})
+      const filteredList =footerContext.likedList.filter(values => !(values.randomCost <= parseInt(footerContext.userNumberInput)))
+      footerContext.updateLikedList(filteredList);
+      window.localStorage.setItem("likedArray", JSON.stringify(filteredList));
 
-      console.log('filteredCandidates', filteredCandidates)
     }
 
 
