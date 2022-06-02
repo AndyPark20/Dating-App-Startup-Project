@@ -6,10 +6,10 @@ import './InfoHeader.css';
 //Import Context
 import { Context } from '../../App';
 
+/*=================================================================================*/
+
 export const InfoHeader = () => {
-
   const headerContext = React.useContext(Context)
-
 
   //Function to Sort project duration and time
   const sortLikedData = (e) => {
@@ -22,7 +22,6 @@ export const InfoHeader = () => {
 
     if (e.target.className === 'fa fa-long-arrow-up customer-style') {
       const result = headerContext.likedList.sort((a, b) => {
-
         if (a[sortOption] > b[sortOption]) { return 1; };
         if (a[sortOption] < b[sortOption]) { return -1; };
         return 0;

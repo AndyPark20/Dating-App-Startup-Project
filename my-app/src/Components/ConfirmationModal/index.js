@@ -1,37 +1,41 @@
 import React, { useContext, useEffect, Fragment } from 'react';
+
+//Bootstrap Buttons
 import Button from 'react-bootstrap/Button';
+
+//Import CSS
 import './ConfirmationModal.css';
 
 import { Context } from '../App';
 
+/*=================================================================================*/
+
+
 export const ConfirmationModal = () => {
-
   const modal = React.useContext(Context);
-
-
 
   //Modal button functionality
   const modalBtnFunction = (e) => {
-    if (e.target.textContent === 'Confirm' && modal.rejectLocation ==='individual') {
+    if (e.target.textContent === 'Confirm' && modal.rejectLocation === 'individual') {
       modal.updateConfirmReject(true);
       modal.updateRenderModal(false);
     } else {
       modal.updateRenderModal(false);
-    }
-  }
+    };
+  };
 
   //Render selected candidate information to reject
   const renderCandidate = () => {
     if (modal.rejectedCandidate.name) {
       //Destructure name object
-      const { title, first, last } = modal.rejectedCandidate.name
+      const { title, first, last } = modal.rejectedCandidate.name;
       return (
         <Fragment>
           <span className="candidate-info">{title}.{first} {last}</span>
         </Fragment>
       )
-    }
-  }
+    };
+  };
 
 
   return (
@@ -46,6 +50,5 @@ export const ConfirmationModal = () => {
         </div>
       </div>
     </div>
-
-  )
-}
+  );
+};

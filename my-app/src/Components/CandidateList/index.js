@@ -1,23 +1,23 @@
 import React, { useEffect, useState, useContext } from "react";
 
-//Import child components
-import { RenderCandidate } from "./CandidateInfo";
-
 //Import functions
 import { fetchCandidateApi, fetchBizIdea, createRandomMonth, createRandomNumber } from "../../functions/api/";
+
+//Import child components
+import { RenderCandidate } from "./CandidateInfo";
 
 //Import CSS
 import "./CandidateList.css";
 
-//
 import { Context } from '../App';
 
-export const CandidateList = () => {
+/*=================================================================================*/
 
+
+export const CandidateList = () => {
   const candidateListContext = React.useContext(Context);
 
   useEffect(() => {
-
     //render loading spinner
     candidateListContext.updateSpinner(true);
 

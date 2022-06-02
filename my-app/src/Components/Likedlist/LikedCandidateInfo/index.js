@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
+//Import bootstrap
 import Button from 'react-bootstrap/Button';
 
 //confirmation modal
@@ -9,9 +10,9 @@ import { Context } from '../../App';
 
 import context from 'react-bootstrap/esm/AccordionContext';
 
+/*=================================================================================*/
 
 export const LikedCandidateInfo = () => {
-
   const likedContext = React.useContext(Context)
 
   //State to track length of liked List Array for useEffect Controll
@@ -53,7 +54,7 @@ export const LikedCandidateInfo = () => {
     } else {
       likedContext.updateLikedList(likedContext.likedList)
       window.localStorage.setItem("likedArray", JSON.stringify(likedContext.likedList));
-    }
+    };
   }, [count])
 
 
@@ -179,5 +180,5 @@ export const LikedCandidateInfo = () => {
     <React.Fragment>
       {renderLikedCandidates()}
     </React.Fragment>
-  )
+  );
 };

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { InfoHeader } from '../CandidateList/InfoHeader/';
 import { LikedCandidateInfo } from '../LikedList/LikedCandidateInfo/';
 
-
+/*=================================================================================*/
 
 export const LikedList = () => {
 
@@ -17,7 +17,5 @@ export const LikedList = () => {
         </table>
       </div>
     </React.Fragment>
-
-
-  )
-}
+  );
+};

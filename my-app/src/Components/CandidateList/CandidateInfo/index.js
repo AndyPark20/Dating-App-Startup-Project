@@ -1,25 +1,26 @@
 import React, { useEffect, useState, useContext } from "react";
-import { fetchBizIdea } from "../../../functions/api";
+
+//Import functions
+import { fetchBizIdea, createRandomMonth } from "../../../functions/api";
 
 //Import components
 import { InfoHeader } from "../InfoHeader/index";
 
 //Import Bootstrap
 import Button from 'react-bootstrap/Button';
-import "./CandidateInfo.css";
 
-//Import function
-import { createRandomMonth } from "../../../functions/api/";
+//Import CSS
+import "./CandidateInfo.css";
 
 //Import React Context
 import { Context } from '../../App';
 
-export const RenderCandidate = () => {
+/*=================================================================================*/
 
+export const RenderCandidate = () => {
   const candidateInfoContext = React.useContext(Context);
 
   useEffect(() => {
-
     if (candidateInfoContext.likedList) {
       //set LocalStorage
       window.localStorage.setItem("likedArray", JSON.stringify(candidateInfoContext.likedList));
@@ -49,15 +50,14 @@ export const RenderCandidate = () => {
     //Add or Remove Liked Candidates depending on if "like" is true or false
     if (e.target.textContent === 'Like') {
       candidateInfoContext.combinedObject.results.forEach((values, index) => {
+
         if (values.phone === selectedPhoneNumber) {
           //Update liked candidates array
           const updatedToggleObj = { ...candidateInfoContext.combinedObject.results[index], toggleButton: true };
           candidateInfoContext.updateLikedList([...candidateInfoContext.likedList, updatedToggleObj]);
 
-
           //Update liked toggleButton for all candidate list array;
           candidateInfoContext.combinedObject.results[index].toggleButton = true;
-
           candidateInfoContext.updateCombinedObject({ ...candidateInfoContext.combinedObject });
           candidateInfoContext.updateBtnStatus(true);
         };
@@ -66,9 +66,8 @@ export const RenderCandidate = () => {
       //Remove Candidate from Liked List
       candidateInfoContext.likedList.forEach((candidateValues, index) => {
         if (selectedPhoneNumber === candidateValues.phone) {
-          candidateInfoContext.likedList.splice(index, 1)
+          candidateInfoContext.likedList.splice(index, 1);
           candidateInfoContext.updateLikedList(candidateInfoContext.likedList);
-
 
           //Return toggleButton back to false so that the button becomes back to "Save" (All Candidate Array);
           candidateInfoContext.combinedObject.results.forEach((values, index) => {
@@ -120,7 +119,6 @@ export const RenderCandidate = () => {
       const invdividualCandidates = candidateInfoContext.combinedObject.results.map(
         (values, index) => {
           return (
-            // <span className="candidate-info">
             <tbody key={index}>
               <tr className="name-tr-table">
                 <td>

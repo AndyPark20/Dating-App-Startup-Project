@@ -8,8 +8,10 @@ import { Link, Router } from 'react-router-dom';
 
 import { Context } from '../App';
 
-export const Menus = ({ updateBtnStatus }) => {
+/*=================================================================================*/
 
+
+export const Menus = ({ updateBtnStatus }) => {
   const menuContext = React.useContext(Context);
 
   //State to keep track if user clicked on cost limit
@@ -29,8 +31,8 @@ export const Menus = ({ updateBtnStatus }) => {
   const renderProjectCost = (e) => {
     if (menuContext.userNumberInput) {
       if (e.target.id === 'go') {
-       menuContext.likedList.forEach(values => {
-          if(!(values.randomCost <= parseInt(menuContext.userNumberInput))){
+        menuContext.likedList.forEach(values => {
+          if (!(values.randomCost <= parseInt(menuContext.userNumberInput))) {
             values.maxLimitHide = true;
           };
         })
@@ -38,14 +40,14 @@ export const Menus = ({ updateBtnStatus }) => {
         menuContext.updateRenderLikedList(true);
       };
 
-      if(e.target.id ==='reset') {
+      if (e.target.id === 'reset') {
         //If user wants to see original saved candidate
         const retrieveOriginalLikedArray = JSON.parse(window.localStorage.getItem('likedArray'));
-        retrieveOriginalLikedArray.forEach(values=>{
+        retrieveOriginalLikedArray.forEach(values => {
           values.maxLimitHide = false;
         })
         menuContext.updateLikedList(retrieveOriginalLikedArray)
-       menuContext.updateRenderLikedList(true);
+        menuContext.updateRenderLikedList(true);
         menuContext.updateUserNumberInput(null);
       };
     };
@@ -64,7 +66,7 @@ export const Menus = ({ updateBtnStatus }) => {
         </form>
       </Fragment>
     );
-  }
+  };
 
   //function to save boolean value to render either candidate per page or Reject all button
   const toggleFooter = (e) => {
@@ -82,9 +84,9 @@ export const Menus = ({ updateBtnStatus }) => {
   //function to hide filter cost functionality in home section
   const renderFilterCost = () => {
     if (window.location.pathname === '/Saved') {
-        return 'filter-col';
+      return 'filter-col';
     };
-      return 'hidden';
+    return 'hidden';
   };
 
 
