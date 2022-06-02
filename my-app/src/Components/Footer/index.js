@@ -12,7 +12,7 @@ import './Footer.css';
 //Import Provider Context
 import { Context } from '../App';
 
-/*=================================================================================*/
+/*==================================================================================*/
 
 export const Footer = () => {
   const footerContext = React.useContext(Context);
