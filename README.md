@@ -15,4 +15,7 @@ Font-awesome
 Features
 --
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/69870979/171522660-002064e6-022b-4146-a301-e8616476fcb2.png">
+<div class="container" style="display:flex">
+  <h6>1.User can</h6>
+<img width="450" alt="image" src="https://user-images.githubusercontent.com/69870979/171522660-002064e6-022b-4146-a301-e8616476fcb2.png">
+</div>
