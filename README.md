@@ -14,8 +14,7 @@ Font-awesome
 
 Features
 --
-
-<div class="container" style="display:flex">
-  <h6>1.User can</h6>
+A. Home section:
+1. User can view randomly candidates "Profile picture", "Full Name", "Phone Number", "Email", "Business Idea", "Duration", "Cost"
 <img width="450" alt="image" src="https://user-images.githubusercontent.com/69870979/171522660-002064e6-022b-4146-a301-e8616476fcb2.png">
-</div>
+
