@@ -39,7 +39,7 @@ Features
 
 <img width="191" alt="image" style="text-align:start" src="https://user-images.githubusercontent.com/69870979/171537806-539a61b1-f401-4e13-a8c1-d80e3d1a4a9c.png">
 
-***User can reject a single or All liked candidates
+***User can reject a single or All liked candidates**
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171538985-46352c2e-a42e-4891-aa3b-3901ea2b653c.png">
 
@@ -52,7 +52,6 @@ Features
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171539345-478d05cd-f422-4005-9880-1761c8d1f7f8.png">
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171539702-89fbcd0d-916f-4a58-becf-fa1bb54ef4f5.png">
 
 
 
