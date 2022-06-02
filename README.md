@@ -33,7 +33,8 @@ Tools used for this project
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171536209-273ec6e9-fd8b-4831-b600-9da95d3c99d6.png">
 
 ***User can sort duration (quickest-latest) and cost (highest-lowest) via arrow icon**
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/69870979/171537362-152ece57-9441-4129-bbc3-29d852ea3a4a.png">
+<img width="191" alt="image" src="https://user-images.githubusercontent.com/69870979/171537806-539a61b1-f401-4e13-a8c1-d80e3d1a4a9c.png">
+
 
 
 
