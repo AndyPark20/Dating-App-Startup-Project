@@ -1,6 +1,6 @@
 Dating-App-Startup-Project
 --
-This project is a Front-End web application that allows users to retrieve random candidate information and their business ideas.
+This project is a Front-End web application that allows users to retrieve random candidates information and their business ideas.
 Which the users can "Like" and save the candidates for later view. 
 
 Tools used for this project
