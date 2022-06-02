@@ -16,7 +16,7 @@ Features
 --
 **1. Home section:**
 
-*User can view randomly candidates "Profile picture", "Full Name", "Phone Number", "Email", "Business Idea", "Duration", "Cost".
+***User can view randomly candidates "Profile picture", "Full Name", "Phone Number", "Email", "Business Idea", "Duration", "Cost".
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171522660-002064e6-022b-4146-a301-e8616476fcb2.png">
 
 ***User can "Like" the candidate and save it for later view.**
