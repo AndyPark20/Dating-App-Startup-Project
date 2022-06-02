@@ -12,9 +12,9 @@ Tools used for this project
 *Bootstrap
 *Font-awesome
 
-Features
---
+**Features**
 **1. Home section:**
+--
 
 
 ***User can view randomly candidates "Profile picture", "Full Name", "Phone Number", "Email", "Business Idea", "Duration", "Cost".**
@@ -27,12 +27,13 @@ Features
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171523186-aac34013-f271-4a7b-8039-2d3b21246cdf.png">
 
 **2. Saved Candidates section:**
+--
 
 ***User can view all liked candidates 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171536209-273ec6e9-fd8b-4831-b600-9da95d3c99d6.png">
 
-*User can sort duration (quickest-latest) and cost (highest-lowest) via arrow icon
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/69870979/171537362-152ece57-9441-4129-bbc3-29d852ea3a4a.png">
+***User can sort duration (quickest-latest) and cost (highest-lowest) via arrow icon**
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/69870979/171537362-152ece57-9441-4129-bbc3-29d852ea3a4a.png">
 
 
 
