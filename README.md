@@ -4,7 +4,7 @@ This project is a Front-End web application that allows users to retrieve random
 Which the users can "Like" and save the candidates for later view. 
 
 Tools used for this project
---
+---
 *React.js
 *CSS3
 *HTML5
